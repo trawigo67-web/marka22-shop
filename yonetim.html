@@ -91,6 +91,13 @@ ol b{color:var(--ink);font-weight:400}
   </section>
 
   <section class="card">
+    <div class="sw">
+      <div><h2>Fiyatları göster</h2><div class="st" id="fiySt">…</div><div class="note">Kapalıyken shop ön sipariş vitrinidir: fiyat ve gram görünmez, müşteri kutusuna ekleyip WhatsApp'tan sorar.</div></div>
+      <button class="tg" id="fiyTg" role="switch" aria-checked="false" aria-label="Fiyatları göster"></button>
+    </div>
+  </section>
+
+  <section class="card">
     <h2>Ürün ekle</h2>
     <p class="h">Fotoğrafı çek ya da seç, bilgileri yaz, kaydet. Ürün shop'ta "Vitrinden" bölümünde görünür.</p>
     <label class="drop" id="drop"><input type="file" id="foto" accept="image/*">Fotoğraf çek veya seç</label>
@@ -100,7 +107,7 @@ ol b{color:var(--ink);font-weight:400}
     <div class="two">
       <div><label class="lb" for="kat">Kategori</label>
         <select id="kat"><option value="pirlanta">Pırlanta</option><option value="alyans">Alyans</option><option value="taki">Altın takı</option><option value="bilezik">Bilezik</option><option value="diger">Diğer</option></select></div>
-      <div><label class="lb" for="fiyat">Fiyat (€) – boşsa "fiyat iste"</label>
+      <div><label class="lb" for="fiyat">Fiyat (€) – isteğe bağlı</label>
         <input type="number" id="fiyat" inputmode="decimal" min="0" step="1" placeholder="örn. 1490"></div>
     </div>
     <label class="lb" for="acik">Kısa açıklama (isteğe bağlı)</label>
@@ -133,7 +140,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 const enc = s => btoa(unescape(encodeURIComponent(s)));
 const dec = b => decodeURIComponent(escape(atob(String(b).replace(/\s/g,""))));
 const KATAD = {pirlanta:"Pırlanta", alyans:"Alyans", taki:"Altın takı", bilezik:"Bilezik", diger:"Diğer"};
-let tok = ls.get("my_tok") || "", ayar = {sesera:true}, ayarSha = null, urunler = [], urunSha = null, fotoB64 = null, busy = false;
+let tok = ls.get("my_tok") || "", ayar = {sesera:true, fiyat:false}, ayarSha = null, urunler = [], urunSha = null, fotoB64 = null, busy = false;
 
 function toast(m){ const e = $("toast"); e.textContent = m; e.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(()=>e.classList.remove("on"), 2600); }
 function hata(e){ if (e && e.status === 401) return "Anahtar geçersiz ya da süresi dolmuş. Bağlantıyı kaldırıp yeni anahtar gir.";
@@ -158,7 +165,7 @@ async function basla(){
   try{
     const repo = await gh("");
     if (!(repo.permissions && repo.permissions.push)){ const e = new Error("yazma izni yok"); e.status = 403; throw e; }
-    const a = await oku("ayar.json", {sesera:true}); ayar = Object.assign({sesera:true}, a.data); ayarSha = a.sha;
+    const a = await oku("ayar.json", {sesera:true}); ayar = Object.assign({sesera:true, fiyat:false}, a.data); ayarSha = a.sha;
     const u = await oku("urunler.json", []); urunler = Array.isArray(u.data) ? u.data : []; urunSha = u.sha;
     ciz();
   }catch(e){
@@ -170,6 +177,9 @@ function ciz(){
   const on = ayar.sesera !== false;
   $("sesTg").classList.toggle("on", on); $("sesTg").setAttribute("aria-checked", on ? "true" : "false");
   $("sesSt").textContent = on ? "Açık: Sesera ürünleri shop'ta görünüyor" : "Kapalı";
+  const fy = ayar.fiyat === true;
+  $("fiyTg").classList.toggle("on", fy); $("fiyTg").setAttribute("aria-checked", fy ? "true" : "false");
+  $("fiySt").textContent = fy ? "Açık: fiyatlar shop'ta görünüyor" : "Kapalı: ön sipariş vitrini";
   $("listH").textContent = urunler.length ? urunler.length + " ürün" : "Henüz ürün yok. İlk ürünü yukarıdan ekle.";
   $("list").innerHTML = urunler.map((o,i)=>`<div class="it"><img src="${esc(SITE + o.foto)}" alt="" loading="lazy">
     <div><div class="n">${esc(o.tr || o.id)}</div><div class="s">${esc(KATAD[o.kat] || "")}${o.fiyat != null ? " · " + Number(o.fiyat).toLocaleString("tr-TR") + " €" : " · fiyat iste"}${o.aciklama ? " · " + esc(o.aciklama) : ""}</div>
@@ -208,6 +218,13 @@ $("ekleBtn").onclick = async ()=>{
   busy = false; $("ekleBtn").disabled = false; $("ekleNote").textContent = "";
 };
 
+$("fiyTg").onclick = async ()=>{
+  if (busy) return; busy = true; const yeni = !(ayar.fiyat === true);
+  try{ const r = await yaz("ayar.json", enc(JSON.stringify({...ayar, fiyat: yeni}) + "\n"), ayarSha, "Fiyatlar " + (yeni ? "açıldı" : "gizlendi"));
+    ayar.fiyat = yeni; ayarSha = r.content.sha; ciz(); toast(yeni ? "Fiyatlar artık görünüyor" : "Fiyatlar gizlendi"); }
+  catch(e){ toast(hata(e)); }
+  busy = false;
+};
 $("sesTg").onclick = async ()=>{
   if (busy) return; busy = true; const yeni = !(ayar.sesera !== false);
   try{ const r = await yaz("ayar.json", enc(JSON.stringify({...ayar, sesera: yeni}) + "\n"), ayarSha, "Sesera bölümü " + (yeni ? "açıldı" : "kapatıldı"));

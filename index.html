@@ -162,7 +162,7 @@ html.koyu .more .btn{background:transparent;color:var(--text)}
 
 .promise{display:grid;grid-template-columns:1fr;border-top:1px solid var(--ink)}
 .promise div{padding:20px 0;border-bottom:1px solid var(--rule)}
-@media(min-width:800px){.promise{grid-template-columns:repeat(4,1fr)}.promise div{padding:22px 22px 6px 0;border-bottom:0}.promise div+div{padding-left:22px;border-left:1px solid var(--rule)}}
+@media(min-width:800px){.promise{grid-template-columns:repeat(4,1fr)}.promise.three{grid-template-columns:repeat(3,1fr)}.promise div{padding:22px 22px 6px 0;border-bottom:0}.promise div+div{padding-left:22px;border-left:1px solid var(--rule)}}
 .promise h3{font-size:24px;line-height:1.1}
 .promise p{color:var(--soft);font-size:15px;margin-top:6px}
 
@@ -225,6 +225,8 @@ html.koyu .btn.wa{background:#1d9a50;color:#fff}
 html.koyu .store .btn.line{background:transparent;color:var(--text)}
 html.koyu .plus:hover{color:#0d0d0d}
 html.koyu .opt input{accent-color:#e2c878}
+[hidden]{display:none!important}
+.bcard.sade{grid-template-columns:110px 1fr}
 </style>
 </head>
 <body>
@@ -326,13 +328,13 @@ html.koyu .opt input{accent-color:#e2c878}
     <div id="items"></div>
     <div class="form" id="form">
       <div><label class="lb" for="fName" data-t="fName"></label><input type="text" id="fName" autocomplete="name"></div>
-      <div><span class="lb" data-t="fDeliv"></span><div class="opt" id="fDeliv"></div></div>
-      <div><span class="lb" data-t="fPay"></span><div class="opt" id="fPay"></div></div>
+      <div id="fDelivW"><span class="lb" data-t="fDeliv"></span><div class="opt" id="fDeliv"></div></div>
+      <div id="fPayW"><span class="lb" data-t="fPay"></span><div class="opt" id="fPay"></div></div>
       <div><label class="lb" for="fNote" data-t="fNote"></label><textarea id="fNote"></textarea></div>
     </div>
   </div>
   <div class="dfoot">
-    <div class="tot"><span data-t="total"></span><b id="total">0 €</b></div>
+    <div class="tot" id="totW"><span data-t="total"></span><b id="total">0 €</b></div>
     <div class="note" id="priceNote"></div>
     <div class="err" id="err"></div>
     <button class="btn wa full" id="sendBtn" data-t="send"></button>
@@ -390,7 +392,19 @@ const ALTINTAKI = [
 ];
 
 const T = {
- tr:{cart:"Sepet",nPir:"Pırlanta",nAly:"Alyans",nAlt:"Altın fiyatları",nBil:"Bilezik",nMag:"Mağaza",
+ tr:{nAlt_o:"Ziynet",cart_o:"Kutum",add_o:"Kutuya ekle",added_o:"Kutunuza eklendi",needItem_o:"Kutunuz boş.",
+  heroP_o:"Tektaştan alyansa, bilezikten ziynete. Beğendiklerinizi kutunuza koyun, WhatsApp'tan bize sorun, dükkânımızdan teslim alın.",
+  pirP_o:"Zen Diamond'ın ürün gruplarından seçin. İlgilendiğiniz grubu kutunuza ekleyin, güncel modelleri WhatsApp'tan gönderelim.",ask_o:"Kutuya ekle",
+  altH_o:"Ziynet ve Reşat altın",altP_o:"İstediğinizi kutunuza ekleyin; günün fiyatını WhatsApp'tan bildirelim.",bzO:"22 ayar. Model ve ölçüyü birlikte seçeriz.",
+  seseraP_o:"Sesera Gold'un zarif ve modern altın takı koleksiyonu, Marka Istanbul'da. Beğendiğiniz modeli kutunuza ekleyin; fiyatını ve stok durumunu WhatsApp'tan bildirelim.",
+  yeniP_o:"Mağazamızdan seçtiklerimiz. Beğendiğinizi kutunuza ekleyin, WhatsApp'tan konuşalım.",takiP0_o:"Zarif ve modern altın takılar. İlgilendiğiniz grubu kutunuza ekleyin, güncel modelleri gönderelim.",
+  send_o:"Ön siparişi WhatsApp'tan gönder",empty_o:"Kutunuz boş. Beğendiğiniz ürünleri ekleyin, tek dokunuşla WhatsApp'tan bize sorun.",
+  priceNote_o:"Bu bir ön sipariştir, ödeme alınmaz. Fiyatı ve stok durumunu WhatsApp'tan bildiririz.",
+  disclaimer_o:"marka22.shop bir ön sipariş vitrinidir: ürünü seçersiniz, WhatsApp'tan bize ulaşırsınız; fiyatı ve teslimatı birlikte netleştiririz.",
+  rateO:"Ön sipariş vitrini: seçin, WhatsApp'tan sorun, dükkânımızdan alın",
+  o1:"Seçin",o1d:"Beğendiğiniz ürünleri kutunuza ekleyin.",o2:"Bize sorun",o2d:"Kutunuzu tek dokunuşla WhatsApp'tan gönderin; fiyatı ve stok durumunu bildirelim.",o3:"Dükkândan alın",o3d:"Keupstraße'de görün, deneyin ve teslim alın.",
+  mHead_o:"*Ön sipariş talebi – marka22.shop*",mAskO:"Fiyat ve stok bilgisi rica ediyorum.",
+  cart:"Sepet",nPir:"Pırlanta",nAly:"Alyans",nAlt:"Altın fiyatları",nBil:"Bilezik",nMag:"Mağaza",
   heroH:"Zen Diamond pırlantaları, <em>Köln Keupstraße'de.</em>",
   heroP:"Tektaştan alyansa, bilezikten ziynete. Modeli seçin, fiyatı WhatsApp'tan alın, dükkânımızda deneyip teslim alın.",
   heroA:"Koleksiyonu gör",heroB:"WhatsApp'tan randevu al",
@@ -427,7 +441,19 @@ const T = {
   spotLbl:"Has altın 1 g",live:"canlı",daily:"günlük",offline:"son bilinen",manual:"dükkân fiyatı",
   hi:"Merhaba, bilgi almak istiyorum.",hiR:"Merhaba, mağazanızda randevu almak istiyorum.",
   mHead:"*Yeni sipariş – marka22.shop*",mAsk:"fiyat sorulacak",mName:"Müşteri",mDeliv:"Teslimat",mPay:"Ödeme",mNote:"Not",mTotal:"Toplam (anlık kur)",mSpot:"Has altın"},
- de:{cart:"Warenkorb",nPir:"Brillanten",nAly:"Trauringe",nAlt:"Goldpreise",nBil:"Armreifen",nMag:"Geschäft",
+ de:{nAlt_o:"Ziynet",cart_o:"Meine Auswahl",add_o:"Zur Auswahl",added_o:"Zur Auswahl hinzugefügt",needItem_o:"Ihre Auswahl ist leer.",
+  heroP_o:"Vom Solitär bis zum Trauring, vom Armreif bis zum Ziynet. Legen Sie Ihre Favoriten in die Auswahl, fragen Sie uns per WhatsApp und holen Sie im Geschäft ab.",
+  pirP_o:"Wählen Sie aus den Produktgruppen von Zen Diamond. Legen Sie eine Gruppe in Ihre Auswahl, wir senden aktuelle Modelle per WhatsApp.",ask_o:"Zur Auswahl",
+  altH_o:"Ziynet und Reşat Gold",altP_o:"Legen Sie das Gewünschte in Ihre Auswahl; den Tagespreis nennen wir per WhatsApp.",bzO:"22 Karat. Modell und Größe wählen wir gemeinsam.",
+  seseraP_o:"Die feine, moderne Goldschmuck-Kollektion von Sesera Gold bei Marka Istanbul. Legen Sie Ihr Modell in die Auswahl; Preis und Verfügbarkeit nennen wir per WhatsApp.",
+  yeniP_o:"Ausgewählte Stücke aus unserem Geschäft. In die Auswahl legen, wir sprechen per WhatsApp.",takiP0_o:"Feiner, moderner Goldschmuck. Legen Sie eine Gruppe in Ihre Auswahl, wir senden aktuelle Modelle.",
+  send_o:"Vorbestellung per WhatsApp senden",empty_o:"Ihre Auswahl ist leer. Fügen Sie Ihre Favoriten hinzu und fragen Sie uns mit einem Klick per WhatsApp.",
+  priceNote_o:"Dies ist eine unverbindliche Vorbestellung, es wird nichts bezahlt. Preis und Verfügbarkeit nennen wir per WhatsApp.",
+  disclaimer_o:"marka22.shop ist ein Vorbestell-Schaufenster: Sie wählen aus, schreiben uns per WhatsApp, und wir klären Preis und Übergabe gemeinsam.",
+  rateO:"Vorbestell-Schaufenster: auswählen, per WhatsApp anfragen, im Geschäft abholen",
+  o1:"Auswählen",o1d:"Legen Sie Ihre Favoriten in die Auswahl.",o2:"Anfragen",o2d:"Senden Sie Ihre Auswahl mit einem Klick per WhatsApp; wir nennen Preis und Verfügbarkeit.",o3:"Im Geschäft abholen",o3d:"In der Keupstraße ansehen, anprobieren und mitnehmen.",
+  mHead_o:"*Vorbestell-Anfrage – marka22.shop*",mAskO:"Bitte um Preis und Verfügbarkeit.",
+  cart:"Warenkorb",nPir:"Brillanten",nAly:"Trauringe",nAlt:"Goldpreise",nBil:"Armreifen",nMag:"Geschäft",
   heroH:"Zen Diamond Brillanten, <em>in der Kölner Keupstraße.</em>",
   heroP:"Vom Solitär bis zum Trauring, vom Armreif bis zum Ziynet. Modell wählen, Preis per WhatsApp erhalten, im Geschäft anprobieren und abholen.",
   heroA:"Kollektion ansehen",heroB:"Termin per WhatsApp",
@@ -464,7 +490,19 @@ const T = {
   spotLbl:"Feingold 1 g",live:"live",daily:"Tagespreis",offline:"letzter Stand",manual:"Ladenpreis",
   hi:"Hallo, ich hätte gern eine Auskunft.",hiR:"Hallo, ich möchte einen Termin in Ihrem Geschäft vereinbaren.",
   mHead:"*Neue Bestellung – marka22.shop*",mAsk:"Preis auf Anfrage",mName:"Kunde",mDeliv:"Lieferung",mPay:"Zahlung",mNote:"Notiz",mTotal:"Summe (aktueller Kurs)",mSpot:"Feingold"},
- en:{cart:"Bag",nPir:"Diamonds",nAly:"Wedding rings",nAlt:"Gold prices",nBil:"Bangles",nMag:"Store",
+ en:{nAlt_o:"Ziynet",cart_o:"My selection",add_o:"Add to selection",added_o:"Added to your selection",needItem_o:"Your selection is empty.",
+  heroP_o:"From solitaires to wedding bands, bangles to ziynet. Put your favourites in your selection, ask us on WhatsApp and collect in store.",
+  pirP_o:"Choose from Zen Diamond's product groups. Add a group to your selection and we'll send current models on WhatsApp.",ask_o:"Add to selection",
+  altH_o:"Ziynet and Reşat gold",altP_o:"Add what you'd like to your selection; we'll send today's price on WhatsApp.",bzO:"22 carat. We choose model and size together.",
+  seseraP_o:"Sesera Gold's fine, modern gold jewellery collection at Marka Istanbul. Add the piece you like to your selection; we'll send price and availability on WhatsApp.",
+  yeniP_o:"Selected pieces from our store. Add to your selection and we'll talk on WhatsApp.",takiP0_o:"Fine, modern gold jewellery. Add a group to your selection and we'll send current models.",
+  send_o:"Send pre-order on WhatsApp",empty_o:"Your selection is empty. Add your favourites and ask us on WhatsApp with one tap.",
+  priceNote_o:"This is a non-binding pre-order; nothing is paid. We'll send price and availability on WhatsApp.",
+  disclaimer_o:"marka22.shop is a pre-order showcase: you choose, message us on WhatsApp, and we settle price and handover together.",
+  rateO:"Pre-order showcase: choose, ask on WhatsApp, collect in store",
+  o1:"Choose",o1d:"Add your favourites to your selection.",o2:"Ask us",o2d:"Send your selection on WhatsApp with one tap; we'll reply with price and availability.",o3:"Collect in store",o3d:"See it, try it on and collect on Keupstraße.",
+  mHead_o:"*Pre-order request – marka22.shop*",mAskO:"Please send price and availability.",
+  cart:"Bag",nPir:"Diamonds",nAly:"Wedding rings",nAlt:"Gold prices",nBil:"Bangles",nMag:"Store",
   heroH:"Zen Diamond jewellery, <em>on Keupstraße in Cologne.</em>",
   heroP:"From solitaires to wedding bands, bangles to ziynet. Choose a model, get the price on WhatsApp, try it on and collect in store.",
   heroA:"See the collection",heroB:"Book a visit on WhatsApp",
@@ -515,7 +553,10 @@ const TAKI_CDN = "https://cdn.shopify.com/s/files/1/0605/4559/7574/files/";
 const TAKI_KAT = ["kolye","kolyeucu","kupe","yuzuk","piercing","set"];
 let TAKI = [], takiKat = "kolye", takiN = 12;
 // ayar.json: {"sesera": true|false} – Sesera × Marka bölümünü açar / kapatır (kapalıyken genel "Altın takı" kartları görünür)
-let AYAR = {sesera:true};
+let AYAR = {sesera:true, fiyat:false};
+// fiyat:false = ön sipariş vitrini: fiyat ve gram görünmez, müşteri kutusuna ekler ve WhatsApp'tan sorar. fiyat:true = fiyatlı shop.
+const P = () => AYAR.fiyat === true;
+const tt = k => (!P() && T[lang][k+"_o"] != null) ? T[lang][k+"_o"] : t(k);
 const loc = () => ({tr:"tr-TR",de:"de-DE",en:"en-GB"}[lang]);
 const euro = v => Math.round(v).toLocaleString(loc()) + " €";
 const euro2 = v => v.toLocaleString(loc(),{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
@@ -545,7 +586,7 @@ async function loadConfig(){
   catch(e){ try{ cfg = JSON.parse(ls.get("ms_cfg")); }catch(_){ } }
   if (!cfg || !cfg.products) cfg = CFG_YEDEK;
   try{ const u = await getJSON("urunler.json?v=" + Date.now(), 4000); if (Array.isArray(u)) extra = u; }catch(e){ extra = []; }
-  try{ const a = await getJSON("ayar.json?v=" + Date.now(), 4000); if (a && typeof a === "object") AYAR = Object.assign({sesera:true}, a); }catch(e){}
+  try{ const a = await getJSON("ayar.json?v=" + Date.now(), 4000); if (a && typeof a === "object") AYAR = Object.assign({sesera:true, fiyat:false}, a); }catch(e){}
   if (AYAR.sesera === false){ TAKI = []; } else
   try{ const k = await getJSON("takilar.json?v=" + Date.now(), 8000);
     if (Array.isArray(k)) TAKI = k.map(o=>({id:"s-"+o.i, sku:o.i, k:o.k, tr:o.n, foto:TAKI_CDN+o.f+"&width=600", fiyat:o.p})); }catch(e){ TAKI = []; }
@@ -583,12 +624,12 @@ const gramTxt = g => String(g).replace(".", lang==="en" ? "." : ",") + " g";
 
 function renderStatic(){
   document.documentElement.lang = lang;
-  document.querySelectorAll("[data-t]").forEach(el=>el.textContent = t(el.dataset.t));
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent = tt(el.dataset.t));
   document.querySelectorAll("[data-h]").forEach(el=>el.innerHTML = t(el.dataset.h));
   document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("on", b.dataset.l===lang));
   $("mosaic").innerHTML = KOLEKSIYON.map(k=>`<article class="tile ${k.cls||""}"${k.anchor?` id="${k.anchor}"`:""}>
     <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
-    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
+    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(tt("ask"))}</button></article>`).join("")
     + [].map(o=>`<article class="tile">
     <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
     <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
@@ -596,9 +637,11 @@ function renderStatic(){
   // Vitrin: yönetici ekranından eklenen ürünler (urunler.json)
   $("yeni").hidden = !extra.length;
   $("yeniG").innerHTML = extra.map(o=>`<article class="pc"><div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
-    <h3>${esc(nm(o))}</h3><div class="sku">${esc(o.aciklama||"")}</div><div class="pp${o.fiyat!=null?"":" ask"}">${o.fiyat!=null?euro(o.fiyat):esc(t("askShort"))}</div><button class="go" data-add="${esc(o.id)}">${esc(t(o.fiyat!=null?"add":"askOne"))}</button></article>`).join("");
+    <h3>${esc(nm(o))}</h3><div class="sku">${esc(o.aciklama||"")}</div>${P()?`<div class="pp${o.fiyat!=null?"":" ask"}">${o.fiyat!=null?euro(o.fiyat):esc(t("askShort"))}</div>`:""}<button class="go" data-add="${esc(o.id)}">${esc(P()?t(o.fiyat!=null?"add":"askOne"):tt("add"))}</button></article>`).join("");
   $("stL").innerHTML = ["s1","s2","s3"].map(k=>`<li>${esc(t(k))}<span>${esc(t(k+"d"))}</span></li>`).join("");
-  $("promise").innerHTML = ["p1","p2","p3","p4"].map(k=>`<div><h3>${esc(t(k))}</h3><p>${esc(t(k+"d"))}</p></div>`).join("");
+  $("promise").classList.toggle("three", !P());
+  $("promise").innerHTML = (P() ? ["p1","p2","p3","p4"] : ["o1","o2","o3"]).map(k=>`<div><h3>${esc(t(k))}</h3><p>${esc(t(k+"d"))}</p></div>`).join("");
+  document.querySelector(".fine").hidden = !P(); $("fDelivW").hidden = !P(); $("fPayW").hidden = !P(); $("totW").hidden = !P();
   $("fDeliv").innerHTML = TESLIM.map(d=>`<label><input type="radio" name="deliv" value="${d}"${d===deliv?" checked":""}>${esc(t("t_"+d))}</label>`).join("");
   $("fPay").innerHTML = ODEME.map(o=>o.aktif ? `<label><input type="radio" name="pay" value="${o.id}"${o.id===pay?" checked":""}>${esc(t("o_"+o.id))}</label>`
     : `<label class="dis"><input type="radio" disabled>${esc(t("o_"+o.id))} (${esc(t("soon"))})</label>`).join("");
@@ -606,12 +649,12 @@ function renderStatic(){
 }
 function renderTaki(){
   $("takiH").innerHTML = TAKI.length ? `Sesera Gold <span class="x">×</span> Marka Istanbul` : esc(t("takiH"));
-  $("takiP").textContent = t(TAKI.length ? "seseraP" : "takiP0");
+  $("takiP").textContent = tt(TAKI.length ? "seseraP" : "takiP0");
   if (!TAKI.length){
     $("taki4").className = "mosaic"; $("takiChips").innerHTML = ""; $("takiMore").innerHTML = "";
     $("taki4").innerHTML = ALTINTAKI.map(k=>`<article class="tile">
     <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
-    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
+    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(tt("ask"))}</button></article>`).join("")
     + [].map(o=>`<article class="tile">
     <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
     <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
@@ -621,23 +664,27 @@ function renderTaki(){
   const L = TAKI.filter(x=>x.k===takiKat);
   $("taki4").className = "pgrid";
   $("taki4").innerHTML = L.slice(0, takiN).map(o=>`<article class="pc"><div class="im"><img src="${esc(o.foto)}" alt="${esc(o.tr)}" loading="lazy"></div>
-    <h3>${esc(o.tr)}</h3><div class="sku">${esc(o.sku)}</div><div class="pp">${euro(o.fiyat)}</div><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
+    <h3>${esc(o.tr)}</h3><div class="sku">${esc(o.sku)}</div>${P()?`<div class="pp">${euro(o.fiyat)}</div>`:""}<button class="go" data-add="${esc(o.id)}">${esc(tt("add"))}</button></article>`).join("");
   $("takiMore").innerHTML = L.length > takiN ? `<button class="btn" data-more="1">${esc(t("more"))} (${L.length - takiN})</button>` : "";
 }
 function rowHtml(p){ const im = imgOf(p.id);
   return `<div class="row"><div class="c">${im?`<img src="${im.src}" width="${im.w}" alt="">`:""}</div>
-    <div class="nm">${esc(nm(p))}<small>${gramTxt(p.gram)}</small></div><div class="pr">${euro(priceOf(p))}</div>
-    <button class="plus" data-add="${p.id}" aria-label="${esc(t("add"))}: ${esc(nm(p))}">+</button></div>`; }
+    <div class="nm">${esc(nm(p))}${P()?`<small>${gramTxt(p.gram)}</small>`:""}</div><div class="pr">${P()?euro(priceOf(p)):""}</div>
+    <button class="plus" data-add="${p.id}" aria-label="${esc(tt("add"))}: ${esc(nm(p))}">+</button></div>`; }
 function renderPrices(){
-  $("spotLbl").textContent = t("spotLbl"); $("spotG").textContent = spotG ? euro2(spotG) : "—";
+  $("dot").hidden = !P();
+  if (!P()){ $("spotLbl").textContent = t("rateO"); $("spotG").textContent = ""; }
+  else { $("spotLbl").textContent = t("spotLbl"); $("spotG").textContent = spotG ? euro2(spotG) : "—"; }
   let when = t(src);
   if (priceTime && !isNaN(priceTime)){ const today = priceTime.toDateString() === new Date().toDateString();
     when += ", " + (today ? priceTime.toLocaleTimeString(loc(),{hour:"2-digit",minute:"2-digit"}) : priceTime.toLocaleDateString(loc())); }
-  $("spotWhen").textContent = when; $("dot").classList.toggle("off", src !== "live");
+  $("spotWhen").textContent = P() ? when : ""; $("dot").classList.toggle("off", src !== "live");
   $("lZ").innerHTML = cfg.products.filter(p=>(p.grup||1)===1).map(rowHtml).join("");
   $("lR").innerHTML = cfg.products.filter(p=>p.grup===2).map(rowHtml).join("");
   const keep = {}; document.querySelectorAll("[data-gram]").forEach(i=>keep[i.dataset.gram] = i.value);
   $("bilezik").innerHTML = cfg.bracelets.map(b=>{ const pg = perGram(b), g = +keep[b.id] || 10, im = imgOf(b.id);
+    if (!P()) return `<div class="bcard sade"><div class="im">${im?`<img src="${im.src}" alt="${esc(nm(b))}">`:""}</div><div>
+      <h3>${esc(nm(b))}</h3><div class="per">${esc(t("bzO"))}</div><button class="btn" data-add="${b.id}">${esc(tt("add"))}</button></div></div>`;
     return `<div class="bcard"><div class="im">${im?`<img src="${im.src}" alt="${esc(nm(b))}">`:""}</div><div>
       <h3>${esc(nm(b))}</h3><div class="per">${esc(t("bzPer"))} ${euro(pg)}</div>
       <div class="calc"><input type="number" inputmode="decimal" min="1" step="0.5" value="${g}" data-gram="${b.id}" aria-label="${esc(t("gram"))}"><span>${esc(t("gram"))}</span><span class="sum" data-bp="${b.id}">${euro(pg*g)}</span></div>
@@ -647,6 +694,7 @@ function renderPrices(){
 function cartLines(){
   return cart.map(it=>{ if (isAsk(it.id)) return {it, ask:true, u:0, sum:0, label:t(it.id)};
     const o = find(it.id); if (!o) return null;
+    if (!P()) return {it, ask:true, u:0, sum:0, label: nm(o) + (o.sku ? ` (${o.sku})` : "")};
     if (o.fiyat == null && !o.gram && !isBracelet(it.id)) return {it, ask:true, u:0, sum:0, label:nm(o)};
     const u = unitPrice(it);
     return {it, u, sum:u*it.q, label: nm(o) + (isBracelet(it.id) ? ` ${gramTxt(it.g)}` : "") + (o.sku ? ` (${o.sku})` : "")}; }).filter(Boolean);
@@ -659,22 +707,23 @@ function renderCart(){
     return `<div class="ci"><div class="im">${im?`<img ${im.ph?'class="ph"':""} src="${esc(im.src)}" alt="">`:""}</div>
       <div><div class="n">${esc(l.label)}</div>${l.ask?"":`<div class="s">${euro(l.u)} / ${esc(t("piece"))}</div>`}
       <div class="qty"><button data-q="${i}" data-d="-1" aria-label="−">−</button><span>${l.it.q}</span><button data-q="${i}" data-d="1" aria-label="+">+</button></div></div>
-      <div class="v${l.ask?" ask":""}">${l.ask?esc(t("askShort")):euro(l.sum)}</div></div>`; }).join("") : `<div class="empty">${esc(t("empty"))}</div>`;
+      <div class="v${l.ask?" ask":""}">${!P()?"":l.ask?esc(t("askShort")):euro(l.sum)}</div></div>`; }).join("") : `<div class="empty">${esc(tt("empty"))}</div>`;
   $("total").textContent = euro(L.reduce((a,l)=>a+l.sum,0));
-  $("priceNote").textContent = (asks ? t("askNote")(asks) + " " : "") + t("priceNote");
+  $("priceNote").textContent = P() ? (asks ? t("askNote")(asks) + " " : "") + t("priceNote") : tt("priceNote");
   ls.set("ms_cart2", JSON.stringify(cart));
 }
 function toast(m){ const e = $("toast"); e.textContent = m; e.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(()=>e.classList.remove("on"), 1700); }
 function openCart(on){ $("drawer").classList.toggle("on", on); $("ovl").classList.toggle("on", on); $("drawer").setAttribute("aria-hidden", on?"false":"true"); $("err").classList.remove("on"); }
 function addToCart(id, ask){
   let g = null;
-  if (!ask && isBracelet(id)){ const inp = document.querySelector(`[data-gram="${id}"]`); g = Math.max(1, +(inp && inp.value) || 10); }
+  if (!ask && P() && isBracelet(id)){ const inp = document.querySelector(`[data-gram="${id}"]`); g = Math.max(1, +(inp && inp.value) || 10); }
   const ex = cart.find(c=>c.id===id && (c.g||null)===g);
   if (ex){ if (!ask) ex.q++; } else cart.push({id, q:1, g});
-  renderCart(); toast(t(ask ? "asked" : "added"));
+  renderCart(); toast(P() ? t(ask ? "asked" : "added") : tt("added"));
 }
 function orderMessage(){
-  const L = cartLines(), name = $("fName").value.trim(), note = $("fNote").value.trim(), lines = [t("mHead"), ""];
+  const L = cartLines(), name = $("fName").value.trim(), note = $("fNote").value.trim(), lines = [tt("mHead"), ""];
+  if (!P()){ L.forEach(l=>lines.push(`• ${l.it.q} × ${l.label}`)); lines.push("", `${t("mName")}: ${name}`); if (note) lines.push(`${t("mNote")}: ${note}`); lines.push("", t("mAskO")); return lines.join("\n"); }
   L.forEach(l=>lines.push(`• ${l.it.q} × ${l.label} — ${l.ask ? t("mAsk") : euro(l.sum)}`));
   if (L.some(l=>!l.ask)) lines.push("", `*${t("mTotal")}: ${euro(L.reduce((a,l)=>a+l.sum,0))}*`, `${t("mSpot")}: ${euro2(spotG)} / g (${t(src)})`);
   lines.push("", `${t("mName")}: ${name}`, `${t("mDeliv")}: ${t("t_"+deliv)}`, `${t("mPay")}: ${t("o_"+pay)}`);
@@ -695,7 +744,7 @@ document.addEventListener("change", e=>{ if (e.target.name === "deliv") deliv = 
 document.addEventListener("keydown", e=>{ if (e.key === "Escape") openCart(false); });
 $("cartBtn").onclick = ()=>openCart(true); $("closeBtn").onclick = $("ovl").onclick = ()=>openCart(false);
 $("sendBtn").onclick = ()=>{ const err = $("err");
-  if (!cartLines().length){ err.textContent = t("needItem"); return err.classList.add("on"); }
+  if (!cartLines().length){ err.textContent = tt("needItem"); return err.classList.add("on"); }
   if (!$("fName").value.trim()){ err.textContent = t("needName"); err.classList.add("on"); return $("fName").focus(); }
   err.classList.remove("on");
   const a = document.createElement("a"); a.href = waUrl(orderMessage()); a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); };
