@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="description" content="Marka Istanbul Köln – yetkili Zen Diamond bayisi. Tektaş, alyans, baget ve pırlanta koleksiyonları; 22 ayar bilezik, ziynet ve Reşat altın güncel kurla.">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Marka Istanbul – Zen Diamond Köln</title>
+<link href="f.css" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f5f2; --surface:#ffffff; --ink:#0d0d0d; --text:#0d0d0d; --soft:#6f6a60; --rule:#e2dfd7;
+  --gold:#a8873a; --red:#d8232a; --band:#0d0d0d; --field:#ffffff;
+  --metal:linear-gradient(120deg,#8a6a1f 0%,#e2c878 42%,#b08d3c 68%,#7a5a17 100%);
+  --disp:"Cormorant Garamond","Times New Roman",serif; --body:"Jost",system-ui,sans-serif;
+  --w:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--band);scroll-behavior:smooth}
+body{font-family:var(--body);font-weight:300;font-size:16px;line-height:1.55;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:-.01em}
+
+.rate{background:var(--band);color:#e9e3d2;font-size:13px;letter-spacing:.02em;padding:calc(7px + env(safe-area-inset-top)) 16px 7px;text-align:center}
+.rate b{font-weight:500;color:#e2c878;margin:0 6px 0 4px}
+.rate i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#3fae76;margin-right:8px;vertical-align:1px}
+.rate i.off{background:#c9a647}
+
+.top{position:sticky;top:0;z-index:30;background:#f6f5f2;border-bottom:1px solid #e2dfd7}
+.top .wrap{display:flex;align-items:center;gap:18px;height:68px}
+.top .logo{height:40px;width:auto}
+.top nav{display:none;gap:30px;margin:0 auto;font-size:15px;font-weight:400;color:#0d0d0d}
+.top nav a{padding:6px 0;border-bottom:1px solid transparent}
+.top nav a:hover{border-bottom-color:var(--gold)}
+.top .r{margin-left:auto;display:flex;align-items:center;gap:14px;color:#0d0d0d}
+.lang{display:flex;gap:2px;font-size:13px}
+.lang button{padding:5px 6px;color:#8a857b;font-weight:400}
+.lang button.on{color:#0d0d0d;border-bottom:1px solid var(--gold)}
+.bag{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:400;border:1px solid #0d0d0d;padding:8px 14px}
+.bag span.n{font-weight:500;color:var(--gold)}
+@media(min-width:940px){.top nav{display:flex}.top .r{margin-left:0}.top .logo{height:46px}}
+
+.hero{display:grid;grid-template-columns:1fr}
+.hero .pic{position:relative;min-height:58vw;background:#eceae5}
+.hero .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .txt{padding:38px 22px 46px;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(42px,6.4vw,84px);line-height:.98}
+.hero h1 em{font-style:italic}
+.hero p{font-size:18px;max-width:30em;margin-top:22px;color:var(--soft)}
+.acts{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#f6f5f2;padding:15px 26px;font-size:15px;font-weight:400;letter-spacing:.03em}
+.btn.wa{background:#1d9a50;color:#fff}
+.btn.full{width:100%}
+.link{font-size:15px;font-weight:400;border-bottom:1px solid var(--gold);padding-bottom:3px}
+@media(min-width:940px){
+  .hero{grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);min-height:min(78vh,760px)}
+  .hero .pic{order:2;min-height:0}
+  .hero .txt{padding:60px 56px 60px max(22px,calc((100vw - var(--w))/2 + 22px))}
+}
+
+.dealer{background:var(--herobg,#f4f5f4);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.dealer .wrap{display:grid;grid-template-columns:1fr;align-items:center;padding:0}
+.dealer img{width:100%}
+.dealer div.t{padding:26px 22px 34px}
+.dealer h2{font-size:clamp(28px,3.6vw,44px);line-height:1.05}
+.dealer p{color:var(--soft);margin-top:12px;max-width:34em}
+@media(min-width:940px){.dealer .wrap{grid-template-columns:1.25fr 1fr;padding:0 22px}.dealer div.t{padding:30px 0 30px 54px}}
+
+section{padding:74px 0 0;scroll-margin-top:80px}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 30px;margin-bottom:28px}
+.head h2{font-size:clamp(34px,4.6vw,60px);line-height:1}
+.head p{color:var(--soft);max-width:30em}
+
+.mosaic{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 14px}
+.tile{display:flex;flex-direction:column;scroll-margin-top:90px}
+.tile .im{background:#eceae5;overflow:hidden;aspect-ratio:4/3}
+.tile .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.tile:hover .im img{transform:scale(1.03)}
+.tile h3{font-size:26px;line-height:1.1;margin-top:14px}
+.tile p{color:var(--soft);font-size:15px;margin-top:4px}
+.go{margin-top:10px;align-self:flex-start;font-size:15px;font-weight:400;border-bottom:1px solid var(--gold);padding-bottom:2px;text-align:left}
+.tile.big,.tile.mid{grid-column:1/-1}
+.tile.big .im,.tile.mid .im{aspect-ratio:16/10}
+.tile.big h3,.tile.mid h3{font-size:34px}
+@media(min-width:940px){
+  .mosaic{grid-template-columns:repeat(12,1fr);gap:44px 22px}
+  .tile{grid-column:span 3}
+  .tile.big{grid-column:span 7}.tile.mid{grid-column:span 5}
+  .tile.big .im,.tile.mid .im{aspect-ratio:auto;height:440px}
+  .tile.big h3,.tile.mid h3{font-size:36px}
+}
+@media(prefers-reduced-motion:reduce){.tile .im img{transition:none}html{scroll-behavior:auto}}
+
+.story{margin-top:84px;background:#0d0d0d;color:#efe9da;position:relative;overflow:hidden}
+.story>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
+.story::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,13,13,.94) 0%,rgba(13,13,13,.8) 46%,rgba(13,13,13,.1) 82%)}
+.story .wrap{position:relative;z-index:2;padding-top:74px;padding-bottom:74px}
+.story .in{max-width:560px}
+.story h2{font-size:clamp(34px,4.4vw,56px);line-height:1.02}
+.story p{margin-top:16px;color:#cfc8b6}
+.story ul{list-style:none;margin-top:26px;border-top:1px solid rgba(226,200,120,.35)}
+.story li{padding:13px 0;border-bottom:1px solid rgba(226,200,120,.35);font-weight:400}
+.story li span{display:block;font-weight:300;color:#b9b19d;font-size:15px}
+@media(max-width:700px){.story::before{background:rgba(13,13,13,.82)}}
+
+.board{display:grid;grid-template-columns:1fr;gap:34px 54px}
+@media(min-width:940px){.board{grid-template-columns:1fr 1fr}}
+.col h3{font-size:28px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:48px 1fr auto 40px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule)}
+.row .c{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+.row .c img{object-fit:contain;filter:drop-shadow(0 3px 4px rgba(60,40,0,.22))}
+.row .nm{font-weight:400;font-size:17px}
+.row .nm small{display:block;font-weight:300;color:var(--soft);font-size:13.5px}
+.row .pr{font-family:var(--disp);font-size:28px;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.plus{width:38px;height:38px;border:1px solid var(--ink);font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center}
+.plus:hover{background:var(--ink);color:var(--paper)}
+.fine{color:var(--soft);font-size:14px;margin-top:16px;max-width:46em}
+
+.bz{display:grid;grid-template-columns:1fr;gap:16px;margin-top:44px;scroll-margin-top:90px}
+@media(min-width:940px){.bz{grid-template-columns:1fr 1fr 1.1fr;gap:22px}}
+.bcard{background:var(--surface);border:1px solid var(--rule);display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px;align-items:center}
+.bcard .im{background:radial-gradient(circle at 50% 42%,#fffdf6,#f3e9c9);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.bcard .im img{width:82%;filter:drop-shadow(0 5px 7px rgba(60,40,0,.25))}
+.bcard h3{font-size:28px;line-height:1}
+.bcard .per{color:var(--soft);font-size:14.5px;margin-top:2px}
+.calc{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.calc input{width:72px;border:1px solid var(--ink);padding:9px 8px;font:inherit;font-weight:400;text-align:center;background:var(--field);color:var(--text);border-radius:0}
+.calc .sum{font-family:var(--disp);font-size:28px;font-variant-numeric:tabular-nums lining-nums;margin-left:auto;white-space:nowrap}
+.bcard .btn{margin-top:12px;padding:11px 16px;font-size:14px}
+.gset{position:relative;min-height:230px;background:#eceae5;overflow:hidden;display:flex;align-items:flex-end}
+.gset>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gset div{position:relative;background:var(--gsetbg,#f6f5f2);padding:14px 18px;margin:14px;max-width:300px}
+.gset h3{font-size:26px;line-height:1.05}
+.gset p{color:var(--soft);font-size:15px;margin-top:4px}
+
+.promise{display:grid;grid-template-columns:1fr;border-top:1px solid var(--ink)}
+.promise div{padding:20px 0;border-bottom:1px solid var(--rule)}
+@media(min-width:800px){.promise{grid-template-columns:repeat(4,1fr)}.promise div{padding:22px 22px 6px 0;border-bottom:0}.promise div+div{padding-left:22px;border-left:1px solid var(--rule)}}
+.promise h3{font-size:24px;line-height:1.1}
+.promise p{color:var(--soft);font-size:15px;margin-top:6px}
+
+.store{display:grid;grid-template-columns:1fr;gap:26px;padding:34px 0 0;border-top:1px solid var(--ink)}
+@media(min-width:900px){.store{grid-template-columns:1.1fr 1fr 1fr;gap:54px}}
+.store h2{font-size:clamp(34px,4.4vw,56px);line-height:1}
+.store dl{display:grid;gap:14px}
+.store dt{font-size:13.5px;color:var(--soft)}
+.store dd{font-weight:400;font-size:17px}
+.store .acts{margin-top:0;flex-direction:column;align-items:stretch;gap:10px}
+.store .btn.line{background:transparent;color:var(--text);border:1px solid var(--ink)}
+footer{margin-top:74px;background:#0d0d0d;color:#a9a393;font-size:14px;padding:34px 0 calc(40px + env(safe-area-inset-bottom))}
+footer .wrap{display:grid;gap:14px}
+footer img{height:44px;width:auto;background:#f6f5f2;padding:6px 12px;justify-self:start}
+footer a{color:#e2c878;border-bottom:1px solid rgba(226,200,120,.4)}
+
+.ovl{position:fixed;inset:0;background:rgba(13,13,13,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.ovl.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(460px,100%);background:var(--drawer,#f6f5f2);color:var(--text);z-index:41;transform:translateX(102%);transition:transform .25s;display:flex;flex-direction:column}
+.drawer.on{transform:none;box-shadow:-14px 0 50px rgba(0,0,0,.25)}
+.dh{display:flex;align-items:center;padding:calc(18px + env(safe-area-inset-top)) 22px 16px;border-bottom:1px solid var(--ink)}
+.dh h2{font-size:32px;margin-right:auto;line-height:1}
+.dh button{font-size:24px;padding:2px 6px}
+.dbody{flex:1;overflow-y:auto;padding:6px 22px 18px}
+.ci{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--rule)}
+.ci .im{width:56px;height:56px;background:#efece4;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ci .im img{max-width:44px;max-height:44px;object-fit:contain}
+.ci .im img.ph{max-width:none;max-height:none;width:100%;height:100%;object-fit:cover}
+.ci .n{font-weight:400}
+.ci .s{color:var(--soft);font-size:14px}
+.ci .v{font-family:var(--disp);font-size:22px;text-align:right;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.ci .v.ask{font-family:var(--body);font-size:13.5px;color:var(--soft);white-space:normal;max-width:90px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--rule);margin-top:6px;background:var(--field)}
+.qty button{width:30px;height:28px;font-size:17px}
+.qty span{min-width:22px;text-align:center;font-weight:400;font-size:14.5px}
+.empty{color:var(--soft);padding:44px 0;font-size:17px}
+.form{margin-top:20px;display:grid;gap:16px}
+.form .lb{font-size:14px;color:var(--soft);display:block;margin-bottom:6px}
+.form input[type=text],.form textarea{width:100%;border:1px solid var(--ink);padding:12px;font:inherit;font-weight:400;background:var(--field);color:var(--text);border-radius:0}
+.form textarea{min-height:64px;resize:vertical}
+.opt{display:grid;border:1px solid var(--rule);background:var(--field)}
+.opt label{display:flex;align-items:center;gap:10px;padding:11px 12px;cursor:pointer;font-weight:400;font-size:15.5px}
+.opt label+label{border-top:1px solid var(--rule)}
+.opt input{accent-color:#0d0d0d;width:17px;height:17px}
+.opt label.dis{color:var(--soft);cursor:default;font-weight:300}
+.dfoot{border-top:1px solid var(--ink);padding:14px 22px calc(16px + env(safe-area-inset-bottom));background:var(--dfoot,#fff)}
+.tot{display:flex;justify-content:space-between;align-items:baseline}
+.tot span{font-size:15px}
+.tot b{font-family:var(--disp);font-weight:500;font-size:34px;font-variant-numeric:tabular-nums lining-nums}
+.note{color:var(--soft);font-size:13.5px;line-height:1.4;margin:2px 0 12px}
+.err{color:var(--red);font-size:14.5px;margin-bottom:10px;display:none;font-weight:400}
+.err.on{display:block}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,30px);background:#0d0d0d;color:#f6f5f2;padding:12px 20px;font-size:14.5px;opacity:0;transition:all .25s;z-index:60;pointer-events:none;white-space:nowrap;border-bottom:2px solid #c9a647}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* koyu konseptler – üst logo şeridi açık kalır, Zen logosu değişmez */
+html.koyu{--paper:var(--tbg,#111112);--surface:rgba(255,255,255,.05);--text:#f1ead8;--ink:#e2c878;--soft:#b3aa93;--rule:rgba(226,200,120,.26);--herobg:var(--tbg2,#0b0b0c);--field:rgba(0,0,0,.35);--drawer:#151516;--dfoot:#0e0e0f;--gsetbg:#151516;color-scheme:dark}
+html.koyu .btn{background:var(--metal);color:#0d0d0d}
+html.koyu .btn.wa{background:#1d9a50;color:#fff}
+html.koyu .store .btn.line{background:transparent;color:var(--text)}
+html.koyu .plus:hover{color:#0d0d0d}
+html.koyu .opt input{accent-color:#e2c878}
+</style>
+</head>
+<body>
+
+<div class="rate"><i class="off" id="dot"></i><span id="spotLbl"></span><b id="spotG">—</b><span id="spotWhen"></span></div>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#ust"><img class="logo" src="lockup.png" alt="Zen Diamond × Marka Istanbul"></a>
+    <nav>
+      <a href="#pirlanta" data-t="nPir"></a><a href="#alyans" data-t="nAly"></a><a href="#altin" data-t="nAlt"></a><a href="#bilezik" data-t="nBil"></a><a href="#magaza" data-t="nMag"></a>
+    </nav>
+    <div class="r">
+      <div class="lang" id="lang"><button data-l="tr">TR</button><button data-l="de">DE</button><button data-l="en">EN</button></div>
+      <button class="bag" id="cartBtn"><span data-t="cart"></span><span class="n" id="cartN">0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="ust">
+  <div class="pic"><img src="g-hero.jpg" alt=""></div>
+  <div class="txt">
+    <h1 data-h="heroH"></h1>
+    <p data-t="heroP"></p>
+    <div class="acts"><a class="btn" href="#pirlanta" data-t="heroA"></a><a class="link" id="waHero" target="_blank" rel="noopener" data-t="heroB"></a></div>
+  </div>
+</div>
+
+<div class="dealer">
+  <div class="wrap">
+    <img id="kapak" src="kapak-beyaz.jpg" alt="Zen Diamond × Marka Istanbul">
+    <div class="t"><h2 data-t="dealH"></h2><p data-t="dealP"></p></div>
+  </div>
+</div>
+
+<main>
+  <section id="pirlanta"><div class="wrap">
+    <div class="head"><h2 data-t="pirH"></h2><p data-t="pirP"></p></div>
+    <div class="mosaic" id="mosaic"></div>
+  </div></section>
+
+  <div class="story">
+    <img src="g-atolye.jpg" alt="" loading="lazy">
+    <div class="wrap"><div class="in">
+      <h2 data-t="stH"></h2><p data-t="stP"></p>
+      <ul id="stL"></ul>
+    </div></div>
+  </div>
+
+  <section id="altin"><div class="wrap">
+    <div class="head"><h2 data-t="altH"></h2><p data-t="altP"></p></div>
+    <div class="board"><div class="col"><h3 data-t="zH"></h3><div id="lZ"></div></div><div class="col"><h3 data-t="rH"></h3><div id="lR"></div></div></div>
+    <p class="fine" data-t="altF"></p>
+    <div class="bz" id="bilezik"></div>
+  </div></section>
+
+  <section><div class="wrap"><div class="promise" id="promise"></div></div></section>
+
+  <section id="magaza"><div class="wrap">
+    <div class="store">
+      <h2 data-t="magH"></h2>
+      <dl>
+        <div><dt data-t="mAdr"></dt><dd>Keupstraße 52-54<br>51063 Köln</dd></div>
+        <div><dt data-t="mSaat"></dt><dd data-t="hours"></dd></div>
+        <div><dt data-t="mTel"></dt><dd><a href="tel:+4922180039255">0221 80039255</a></dd></div>
+      </dl>
+      <div class="acts">
+        <a class="btn wa" id="waShop" target="_blank" rel="noopener" data-t="waWrite"></a>
+        <a class="btn line" href="https://www.google.com/maps/search/?api=1&query=Keupstra%C3%9Fe+52-54+51063+K%C3%B6ln" target="_blank" rel="noopener" data-t="route"></a>
+        <a class="btn line" href="https://www.instagram.com/markaistanbuljuwelier/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <img src="lockup.png" alt="Zen Diamond × Marka Istanbul">
+  <div data-t="disclaimer"></div>
+  <div data-t="imgNote"></div>
+  <div><a href="https://xenosmart.de/markaistanbul/" target="_blank" rel="noopener">Çeyrekmatik</a> &nbsp; <a href="https://xenosmart.de/markaistanbul/impressum.html" target="_blank" rel="noopener" data-t="imprint"></a></div>
+</div></footer>
+
+<div class="ovl" id="ovl"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><h2 data-t="cart"></h2><button id="closeBtn" aria-label="Kapat">✕</button></div>
+  <div class="dbody">
+    <div id="items"></div>
+    <div class="form" id="form">
+      <div><label class="lb" for="fName" data-t="fName"></label><input type="text" id="fName" autocomplete="name"></div>
+      <div><span class="lb" data-t="fDeliv"></span><div class="opt" id="fDeliv"></div></div>
+      <div><span class="lb" data-t="fPay"></span><div class="opt" id="fPay"></div></div>
+      <div><label class="lb" for="fNote" data-t="fNote"></label><textarea id="fNote"></textarea></div>
+    </div>
+  </div>
+  <div class="dfoot">
+    <div class="tot"><span data-t="total"></span><b id="total">0 €</b></div>
+    <div class="note" id="priceNote"></div>
+    <div class="err" id="err"></div>
+    <button class="btn wa full" id="sendBtn" data-t="send"></button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ AYARLAR ============
+   Altın fiyatları Çeyrekmatik ile aynı kaynaktan gelir (config.json: milyemler; canlı has altın: Kitco → gold-api → price.json).
+   Gerçek ürünler (model, fotoğraf, fiyat) için: urunler.json – örnek en altta. */
+const CEYREKMATIK = "https://xenosmart.de/markaistanbul/";
+const OZ = 31.1034768, WA_YEDEK = "4922180039255";
+// Ödeme: aktif:false olanlar "yakında" görünür (PayPal / kart hesabı açılınca true yapılır)
+const ODEME = [{id:"dukkan",aktif:true},{id:"havale",aktif:true},{id:"paypal",aktif:false},{id:"kart",aktif:false}];
+const TESLIM = ["dukkan","kargo"];
+// Görünüm: Timur'un Zen × Marka konsept görselleri. Önizleme: adresin sonuna #tema-siyah gibi yazılır.
+const TEMA = "beyaz";
+const TEMALAR = {
+  beyaz:{kapak:"kapak-beyaz.jpg",hb:"#f4f5f4"}, yinyang:{kapak:"kapak-yinyang.jpg",hb:"#efeeeb"},
+  siyah:{kapak:"kapak-siyah.jpg",koyu:true,band:"#0c0c0d",bg:"#141416",bg2:"#0c0c0d"},
+  ramazan:{kapak:"kapak-ramazan.jpg",koyu:true,band:"#0d2a2c",bg:"#071f28",bg2:"#04121a"},
+  noel:{kapak:"kapak-noel.jpg",koyu:true,band:"#123d2a",bg:"#2a120e",bg2:"#150b08"},
+  yilbasi:{kapak:"kapak-yilbasi.jpg",koyu:true,band:"#0e1430",bg:"#0e1126",bg2:"#06070f"},
+  sevgililer:{kapak:"kapak-sevgililer.jpg",koyu:true,band:"#5a0f1f",bg:"#430f12",bg2:"#22080b"},
+};
+const CFG_YEDEK = {"whatsapp":"4922180039255","fallbackOzEur":3524.45,"products":[
+ {"id":"ceyrek","tr":"Çeyrek","de":"Çeyrek (Viertel)","en":"Çeyrek (quarter)","gram":1.75,"purity":0.916,"satisMilyem":960,"grup":1},
+ {"id":"yarim","tr":"Yarım","de":"Yarım (Halb)","en":"Yarım (half)","gram":3.5,"purity":0.916,"grup":1,"baz":"ceyrek","kat":2},
+ {"id":"tam","tr":"Tam","de":"Tam (Ganz)","en":"Tam (full)","gram":7,"purity":0.916,"grup":1,"baz":"ceyrek","kat":4},
+ {"id":"gremse","tr":"Gremse","de":"Gremse (2,5)","en":"Gremse (2.5)","gram":17.5,"purity":0.916,"grup":1,"baz":"ceyrek","kat":10},
+ {"id":"rceyrek","tr":"R Çeyrek","de":"Reşat Çeyrek","en":"Reşat quarter","gram":1.75,"purity":0.916,"satisMilyem":987.5,"grup":2},
+ {"id":"ryarim","tr":"R Yarım","de":"Reşat Yarım","en":"Reşat half","gram":3.5,"purity":0.916,"grup":2,"baz":"rceyrek","kat":2},
+ {"id":"rtam","tr":"R Tam","de":"Reşat Tam","en":"Reşat full","gram":7,"purity":0.916,"grup":2,"baz":"rceyrek","kat":4},
+ {"id":"r25","tr":"R 2,5","de":"Reşat 2,5","en":"Reşat 2.5","gram":17.5,"purity":0.916,"grup":2,"baz":"rceyrek","kat":10},
+ {"id":"r5","tr":"R 5'li","de":"Reşat 5er","en":"Reşat 5-piece","gram":35,"purity":0.916,"grup":2,"baz":"rceyrek","kat":20}],
+ "bracelets":[{"id":"burma","tr":"Burma","de":"Burma","en":"Burma","purity":0.916,"satisMilyem":960,"grup":3},
+ {"id":"ajda","tr":"Ajda","de":"Ajda","en":"Ajda","purity":0.916,"satisMilyem":975,"grup":3}],"manualSpot":null};
+const GORSEL = {ceyrek:["ziynet",30],yarim:["ziynet",35],tam:["ziynet",41],gremse:["ziynet",48],
+  rceyrek:["resat",30],ryarim:["resat",35],rtam:["resat",41],r25:["resat",46],r5:["resat",48],burma:["burma",44],ajda:["ajda",44]};
+// Koleksiyon başlıkları Zen Diamond'ın kendi ürün gruplarıdır; fotoğraflar temsilidir, fiyat ve model WhatsApp'ta gönderilir.
+const KOLEKSIYON = [
+  {id:"k-tektas", foto:"g-tektas.jpg", cls:"big"},
+  {id:"k-alyans", foto:"g-alyans.jpg", cls:"mid", anchor:"alyans"},
+  {id:"k-baget",  foto:"g-baget.jpg"},
+  {id:"k-kolye",  foto:"g-kolye.jpg"},
+  {id:"k-kupe",   foto:"g-kupe.jpg"},
+  {id:"k-bileklik",foto:"g-bileklik.jpg"},
+];
+const ALTINTAKI = {id:"k-altintaki", foto:"g-altin.jpg"};
+
+const T = {
+ tr:{cart:"Sepet",nPir:"Pırlanta",nAly:"Alyans",nAlt:"Altın fiyatları",nBil:"Bilezik",nMag:"Mağaza",
+  heroH:"Zen Diamond pırlantaları, <em>Köln Keupstraße'de.</em>",
+  heroP:"Tektaştan alyansa, bilezikten ziynete. Modeli seçin, fiyatı WhatsApp'tan alın, dükkânımızda deneyip teslim alın.",
+  heroA:"Koleksiyonu gör",heroB:"WhatsApp'tan randevu al",
+  dealH:"Yetkili Zen Diamond bayisi",dealP:"Marka Istanbul, Zen Diamond koleksiyonlarını Köln'de sunar. Pırlantayı görerek, deneyerek ve danışarak seçersiniz.",
+  pirH:"Pırlanta",pirP:"Zen Diamond'ın ürün gruplarından seçin. İlgilendiğiniz grubu sepete ekleyin, güncel modelleri ve fiyatları gönderelim.",
+  "k-tektas":"Tektaş","d-k-tektas":"Evlilik teklifinin yüzüğü. Yuvarlak, oval, damla ve prenses kesim.",
+  "k-alyans":"Alyans","d-k-alyans":"Klasik ve pırlantalı alyanslar.",
+  "k-baget":"Baget","d-k-baget":"Baget pırlantalı yüzük, kolye ve küpeler.",
+  "k-kolye":"Kolye","d-k-kolye":"Tektaş, tria ve harf kolyeler.",
+  "k-kupe":"Küpe","d-k-kupe":"Tektaş ve halka pırlanta küpeler.",
+  "k-bileklik":"Su yolu bileklik","d-k-bileklik":"Su yolu ve tasarım bileklikler.",
+  "k-altintaki":"Altın takı ve setler","d-k-altintaki":"Set, kolye, künye ve küpe modellerini gönderelim.",
+  ask:"Modelleri ve fiyatı iste",askShort:"Fiyat WhatsApp'ta",asked:"İsteğe eklendi",
+  stH:"Pırlantayı güvenle almak",stP:"Zen Diamond, Türkiye'nin en tanınan pırlanta markalarından biridir. Biz bu koleksiyonları Köln'de yüz yüze, Türkçe ve Almanca danışmanlıkla sunuyoruz.",
+  s1:"Yetkili bayi",s1d:"Zen Diamond ürünleri doğrudan markadan gelir.",s2:"Dükkânda deneyin",s2d:"Karar vermeden önce görün, parmağınızda deneyin.",s3:"Kişisel danışmanlık",s3d:"Bütçenize ve ölçünüze göre birlikte seçelim.",
+  altH:"Altın, bugünün kuruyla",altP:"Ziynet ve Reşat fiyatları has altın kuruna göre her dakika yenilenir. Eklediğiniz ürün sepete o anki fiyatla girer.",
+  zH:"Ziynet",rH:"Reşat",altF:"Fiyatlar bilgi amaçlıdır. Kesin fiyat, siparişiniz WhatsApp'ta onaylandığında belirlenir.",
+  bzPer:"22 ayar, gram fiyatı",gram:"gram",add:"Sepete ekle",added:"Sepete eklendi",piece:"adet",
+  p1:"Canlı altın kuru",p1d:"Fiyatlar piyasaya göre anlık hesaplanır.",p2:"WhatsApp'ta onay",p2d:"Her sipariş kişisel olarak teyit edilir.",p3:"Dükkândan teslim",p3d:"Keupstraße'de görün ve teslim alın.",p4:"Sigortalı gönderim",p4d:"Gönderim seçeneğini WhatsApp'ta birlikte netleştiririz.",
+  magH:"Mağazamız",mAdr:"Adres",mSaat:"Açılış saatleri",mTel:"Telefon",hours:"Pazartesi–Cumartesi 10:00–19:00",waWrite:"WhatsApp'tan yazın",route:"Yol tarifi",
+  empty:"Sepetiniz boş. Bir ürün ekleyin, siparişinizi tek dokunuşla WhatsApp'tan gönderin.",
+  fName:"Ad soyad",fDeliv:"Teslimat",fPay:"Ödeme",fNote:"Not (isteğe bağlı)",
+  t_dukkan:"Dükkândan teslim alacağım",t_kargo:"Sigortalı kargo istiyorum",
+  o_dukkan:"Dükkânda ödeme (nakit veya kart)",o_havale:"Banka havalesi",o_paypal:"PayPal",o_kart:"Online kart ödemesi",soon:"yakında",
+  total:"Toplam",priceNote:"Altın fiyatı anlık değişir; fiyat WhatsApp'ta onaylanınca kesinleşir.",askNote:n=>`${n} ürün için fiyat WhatsApp'ta bildirilecek.`,
+  send:"Siparişi WhatsApp'tan gönder",needName:"Lütfen adınızı yazın.",needItem:"Sepetiniz boş.",
+  disclaimer:"Fiyatlar bilgi amaçlıdır ve altın piyasasına göre anlık değişir. Kesin fiyat, siparişiniz WhatsApp üzerinden onaylandığında belirlenir.",
+  imgNote:"Koleksiyon fotoğrafları temsilidir; güncel modeller mağazamızda ve WhatsApp'ta.",imprint:"Künye (Impressum)",
+  spotLbl:"Has altın 1 g",live:"canlı",daily:"günlük",offline:"son bilinen",manual:"dükkân fiyatı",
+  hi:"Merhaba, bilgi almak istiyorum.",hiR:"Merhaba, mağazanızda randevu almak istiyorum.",
+  mHead:"*Yeni sipariş – marka22.shop*",mAsk:"fiyat sorulacak",mName:"Müşteri",mDeliv:"Teslimat",mPay:"Ödeme",mNote:"Not",mTotal:"Toplam (anlık kur)",mSpot:"Has altın"},
+ de:{cart:"Warenkorb",nPir:"Brillanten",nAly:"Trauringe",nAlt:"Goldpreise",nBil:"Armreifen",nMag:"Geschäft",
+  heroH:"Zen Diamond Brillanten, <em>in der Kölner Keupstraße.</em>",
+  heroP:"Vom Solitär bis zum Trauring, vom Armreif bis zum Ziynet. Modell wählen, Preis per WhatsApp erhalten, im Geschäft anprobieren und abholen.",
+  heroA:"Kollektion ansehen",heroB:"Termin per WhatsApp",
+  dealH:"Autorisierter Zen Diamond Händler",dealP:"Marka Istanbul führt die Kollektionen von Zen Diamond in Köln. Sie wählen Ihren Brillanten, indem Sie ihn sehen, anprobieren und sich beraten lassen.",
+  pirH:"Brillanten",pirP:"Wählen Sie aus den Produktgruppen von Zen Diamond. Legen Sie eine Gruppe in den Warenkorb, wir senden aktuelle Modelle und Preise.",
+  "k-tektas":"Solitär","d-k-tektas":"Der Ring für den Antrag. Rund, oval, Tropfen und Princess.",
+  "k-alyans":"Trauringe","d-k-alyans":"Klassisch oder mit Brillanten.",
+  "k-baget":"Baguette","d-k-baget":"Ringe, Ketten und Ohrringe mit Baguette-Brillanten.",
+  "k-kolye":"Ketten","d-k-kolye":"Solitär-, Tria- und Buchstabenketten.",
+  "k-kupe":"Ohrringe","d-k-kupe":"Solitär-Ohrstecker und Creolen.",
+  "k-bileklik":"Tennisarmband","d-k-bileklik":"Tennis- und Designarmbänder.",
+  "k-altintaki":"Goldschmuck und Sets","d-k-altintaki":"Wir senden Modelle für Sets, Ketten, Armbänder und Ohrringe.",
+  ask:"Modelle und Preis anfragen",askShort:"Preis per WhatsApp",asked:"Zur Anfrage hinzugefügt",
+  stH:"Brillanten mit Sicherheit kaufen",stP:"Zen Diamond gehört zu den bekanntesten Brillantmarken der Türkei. Wir zeigen diese Kollektionen in Köln persönlich, mit Beratung auf Deutsch und Türkisch.",
+  s1:"Autorisierter Händler",s1d:"Zen Diamond Stücke kommen direkt von der Marke.",s2:"Im Geschäft anprobieren",s2d:"Ansehen und anprobieren, bevor Sie entscheiden.",s3:"Persönliche Beratung",s3d:"Wir wählen gemeinsam nach Budget und Größe.",
+  altH:"Gold zum heutigen Kurs",altP:"Ziynet- und Reşat-Preise folgen dem Feingoldkurs und werden jede Minute aktualisiert. Ihr Artikel kommt zum aktuellen Preis in den Warenkorb.",
+  zH:"Ziynet",rH:"Reşat",altF:"Die Preise dienen der Information. Der verbindliche Preis steht mit der Bestätigung Ihrer Bestellung per WhatsApp fest.",
+  bzPer:"22 Karat, Preis je Gramm",gram:"Gramm",add:"In den Warenkorb",added:"Zum Warenkorb hinzugefügt",piece:"Stück",
+  p1:"Live-Goldkurs",p1d:"Preise werden laufend nach Markt berechnet.",p2:"Bestätigung per WhatsApp",p2d:"Jede Bestellung wird persönlich bestätigt.",p3:"Abholung im Geschäft",p3d:"In der Keupstraße ansehen und mitnehmen.",p4:"Versicherter Versand",p4d:"Die Versandart klären wir gemeinsam per WhatsApp.",
+  magH:"Unser Geschäft",mAdr:"Adresse",mSaat:"Öffnungszeiten",mTel:"Telefon",hours:"Montag–Samstag 10:00–19:00",waWrite:"Per WhatsApp schreiben",route:"Route",
+  empty:"Ihr Warenkorb ist leer. Fügen Sie einen Artikel hinzu und senden Sie die Bestellung per WhatsApp.",
+  fName:"Vor- und Nachname",fDeliv:"Lieferung",fPay:"Zahlung",fNote:"Notiz (optional)",
+  t_dukkan:"Abholung im Geschäft",t_kargo:"Versicherter Versand gewünscht",
+  o_dukkan:"Zahlung im Geschäft (bar oder Karte)",o_havale:"Überweisung",o_paypal:"PayPal",o_kart:"Online-Kartenzahlung",soon:"bald",
+  total:"Summe",priceNote:"Der Goldpreis ändert sich laufend; der Preis steht mit der Bestätigung per WhatsApp fest.",askNote:n=>`Für ${n} Artikel nennen wir den Preis per WhatsApp.`,
+  send:"Bestellung per WhatsApp senden",needName:"Bitte geben Sie Ihren Namen ein.",needItem:"Ihr Warenkorb ist leer.",
+  disclaimer:"Die Preise dienen der Information und ändern sich mit dem Goldmarkt. Der verbindliche Preis wird mit der Bestätigung Ihrer Bestellung per WhatsApp festgelegt.",
+  imgNote:"Kollektionsfotos sind Beispielbilder; aktuelle Modelle im Geschäft und per WhatsApp.",imprint:"Impressum",
+  spotLbl:"Feingold 1 g",live:"live",daily:"Tagespreis",offline:"letzter Stand",manual:"Ladenpreis",
+  hi:"Hallo, ich hätte gern eine Auskunft.",hiR:"Hallo, ich möchte einen Termin in Ihrem Geschäft vereinbaren.",
+  mHead:"*Neue Bestellung – marka22.shop*",mAsk:"Preis auf Anfrage",mName:"Kunde",mDeliv:"Lieferung",mPay:"Zahlung",mNote:"Notiz",mTotal:"Summe (aktueller Kurs)",mSpot:"Feingold"},
+ en:{cart:"Bag",nPir:"Diamonds",nAly:"Wedding rings",nAlt:"Gold prices",nBil:"Bangles",nMag:"Store",
+  heroH:"Zen Diamond jewellery, <em>on Keupstraße in Cologne.</em>",
+  heroP:"From solitaires to wedding bands, bangles to ziynet. Choose a model, get the price on WhatsApp, try it on and collect in store.",
+  heroA:"See the collection",heroB:"Book a visit on WhatsApp",
+  dealH:"Authorised Zen Diamond dealer",dealP:"Marka Istanbul carries the Zen Diamond collections in Cologne. You choose your diamond by seeing it, trying it on and asking questions.",
+  pirH:"Diamonds",pirP:"Choose from Zen Diamond's product groups. Add a group to your bag and we'll send current models and prices.",
+  "k-tektas":"Solitaire","d-k-tektas":"The proposal ring. Round, oval, pear and princess cut.",
+  "k-alyans":"Wedding rings","d-k-alyans":"Classic and diamond-set bands.",
+  "k-baget":"Baguette","d-k-baget":"Rings, necklaces and earrings with baguette diamonds.",
+  "k-kolye":"Necklaces","d-k-kolye":"Solitaire, tria and letter necklaces.",
+  "k-kupe":"Earrings","d-k-kupe":"Solitaire studs and hoops.",
+  "k-bileklik":"Tennis bracelet","d-k-bileklik":"Tennis and design bracelets.",
+  "k-altintaki":"Gold jewellery and sets","d-k-altintaki":"We'll send models for sets, necklaces, bracelets and earrings.",
+  ask:"Ask for models and price",askShort:"Price on WhatsApp",asked:"Added to your request",
+  stH:"Buying a diamond with confidence",stP:"Zen Diamond is one of Türkiye's best-known diamond brands. We show these collections in Cologne in person, with advice in German and Turkish.",
+  s1:"Authorised dealer",s1d:"Zen Diamond pieces come straight from the brand.",s2:"Try it in store",s2d:"See it and try it on before you decide.",s3:"Personal advice",s3d:"We choose together, to your budget and size.",
+  altH:"Gold at today's rate",altP:"Ziynet and Reşat prices follow the fine gold rate and refresh every minute. Your item enters the bag at the current price.",
+  zH:"Ziynet",rH:"Reşat",altF:"Prices are for information. The binding price is set when your order is confirmed on WhatsApp.",
+  bzPer:"22 carat, price per gram",gram:"grams",add:"Add to bag",added:"Added to bag",piece:"pcs",
+  p1:"Live gold rate",p1d:"Prices follow the market continuously.",p2:"Confirmed on WhatsApp",p2d:"Every order is confirmed personally.",p3:"Collect in store",p3d:"See it and collect on Keupstraße.",p4:"Insured shipping",p4d:"We settle the shipping option with you on WhatsApp.",
+  magH:"Our store",mAdr:"Address",mSaat:"Opening hours",mTel:"Phone",hours:"Monday–Saturday 10:00–19:00",waWrite:"Write on WhatsApp",route:"Directions",
+  empty:"Your bag is empty. Add an item and send your order on WhatsApp with one tap.",
+  fName:"Full name",fDeliv:"Delivery",fPay:"Payment",fNote:"Note (optional)",
+  t_dukkan:"I'll collect in store",t_kargo:"Insured shipping, please",
+  o_dukkan:"Pay in store (cash or card)",o_havale:"Bank transfer",o_paypal:"PayPal",o_kart:"Online card payment",soon:"soon",
+  total:"Total",priceNote:"The gold price keeps moving; your price is fixed once confirmed on WhatsApp.",askNote:n=>`We'll send the price for ${n} item(s) on WhatsApp.`,
+  send:"Send order on WhatsApp",needName:"Please enter your name.",needItem:"Your bag is empty.",
+  disclaimer:"Prices are for information and move with the gold market. The binding price is set when your order is confirmed on WhatsApp.",
+  imgNote:"Collection photos are illustrative; current models in store and on WhatsApp.",imprint:"Imprint",
+  spotLbl:"Fine gold 1 g",live:"live",daily:"daily",offline:"last known",manual:"shop price",
+  hi:"Hello, I'd like some information.",hiR:"Hello, I'd like to book a visit to your store.",
+  mHead:"*New order – marka22.shop*",mAsk:"price on request",mName:"Customer",mDeliv:"Delivery",mPay:"Payment",mNote:"Note",mTotal:"Total (current rate)",mSpot:"Fine gold"}
+};
+
+const $ = id => document.getElementById(id);
+const ls = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} } };
+let lang = ls.get("ms_lang") || ((navigator.language||"tr").slice(0,2)); if (!T[lang]) lang = "tr";
+const t = k => T[lang][k] ?? T.tr[k] ?? k;
+let cfg = null, spotG = 0, src = "offline", priceTime = null, extra = [];
+let cart = []; try{ cart = JSON.parse(ls.get("ms_cart2")) || []; }catch(e){ cart = []; }
+let deliv = "dukkan", pay = "dukkan";
+const loc = () => ({tr:"tr-TR",de:"de-DE",en:"en-GB"}[lang]);
+const euro = v => Math.round(v).toLocaleString(loc()) + " €";
+const euro2 = v => v.toLocaleString(loc(),{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const wa = () => ((cfg && cfg.whatsapp) || WA_YEDEK).replace(/\D/g,"");
+const waUrl = msg => `https://wa.me/${wa()}?text=${encodeURIComponent(msg)}`;
+const isAsk = id => id.startsWith("k-");
+const nm = o => o[lang] || o.tr || o.id;
+
+function temaUygula(ad){
+  const m = /^#tema-([a-z]+)$/.exec(location.hash || ""); if (m && TEMALAR[m[1]]) ad = m[1];
+  const T0 = TEMALAR[ad] || TEMALAR.beyaz, r = document.documentElement;
+  r.classList.toggle("koyu", !!T0.koyu);
+  ["band","tbg","tbg2","herobg"].forEach(k=>r.style.removeProperty("--"+k));
+  if (T0.band) r.style.setProperty("--band", T0.band);
+  if (T0.bg) r.style.setProperty("--tbg", T0.bg);
+  if (T0.bg2) r.style.setProperty("--tbg2", T0.bg2);
+  if (T0.hb) r.style.setProperty("--herobg", T0.hb);
+  const k = $("kapak"); if (k && !k.src.endsWith(T0.kapak)) k.src = T0.kapak;
+}
+async function getJSON(url, ms=6000){ const c = new AbortController(); const tm = setTimeout(()=>c.abort(), ms);
+  try{ const r = await fetch(url,{signal:c.signal,cache:"no-store"}); if(!r.ok) throw 0; return await r.json(); } finally{ clearTimeout(tm); } }
+async function getText(url, ms=6000){ const c = new AbortController(); const tm = setTimeout(()=>c.abort(), ms);
+  try{ const r = await fetch(url,{signal:c.signal,cache:"no-store"}); if(!r.ok) throw 0; return await r.text(); } finally{ clearTimeout(tm); } }
+async function loadConfig(){
+  try{ cfg = await getJSON(CEYREKMATIK + "config.json?v=" + Date.now()); ls.set("ms_cfg", JSON.stringify(cfg)); }
+  catch(e){ try{ cfg = JSON.parse(ls.get("ms_cfg")); }catch(_){ } }
+  if (!cfg || !cfg.products) cfg = CFG_YEDEK;
+  try{ const u = await getJSON("urunler.json?v=" + Date.now(), 4000); if (Array.isArray(u)) extra = u; }catch(e){ extra = []; }
+}
+async function fetchSpot(){
+  if (cfg.manualSpot){ spotG = +cfg.manualSpot; src = "manual"; priceTime = new Date(); return renderPrices(); }
+  try{ const f = (await getText("https://proxy.kitco.com/getPM?symbol=AU&currency=EUR")).trim().split(",");
+    const bid = parseFloat(f[4]); if (!(bid > 1000)) throw 0; spotG = bid/OZ; src = "live"; priceTime = new Date();
+  }catch(e0){ try{ const j = await getJSON("https://api.gold-api.com/price/XAU/EUR"); if (!j.price) throw 0;
+    spotG = j.price/OZ; src = "live"; priceTime = new Date(j.updatedAt || Date.now());
+  }catch(e1){ try{ const d = await getJSON(CEYREKMATIK + "price.json?v=" + Date.now()); if (!d.ozEur) throw 0;
+    spotG = d.ozEur/OZ; src = "daily"; priceTime = new Date(d.updatedAt);
+  }catch(e2){ let last = null; try{ last = JSON.parse(ls.get("ms_last")); }catch(_){}
+    if (last && last.g){ spotG = last.g; priceTime = new Date(last.d); } else { spotG = (cfg.fallbackOzEur || CFG_YEDEK.fallbackOzEur)/OZ; priceTime = null; }
+    src = "offline"; }}}
+  if (src !== "offline") ls.set("ms_last", JSON.stringify({g:spotG, d:priceTime.toISOString()}));
+  renderPrices();
+}
+// Çeyrekmatik ile aynı hesap: tüm fiyatlar aşağı yuvarlanır
+function priceOf(p){
+  if (p.baz){ const b = cfg.products.find(x=>x.id===p.baz); if (b && !b.baz) return priceOf(b) * (+p.kat||0); }
+  return Math.floor(p.satisMilyem ? p.gram*(p.satisMilyem/1000)*spotG : p.gram*p.purity*spotG*(1+(p.satis||0)/100) + (+p.iscilik||0));
+}
+function perGram(b){ return Math.floor(b.satisMilyem ? (b.satisMilyem/1000)*spotG : b.purity*spotG*(1+(b.satis||0)/100) + (+b.iscilik||0)); }
+const find = id => cfg.products.find(x=>x.id===id) || cfg.bracelets.find(x=>x.id===id) || extra.find(x=>x.id===id);
+const isBracelet = id => !!cfg.bracelets.find(x=>x.id===id);
+function unitPrice(it){ const o = find(it.id); if (!o) return 0;
+  if (isBracelet(it.id)) return perGram(o) * (+it.g||0); if (o.fiyat != null) return +o.fiyat; return priceOf(o); }
+function imgOf(id){
+  if (isAsk(id)){ const k = [...KOLEKSIYON, ALTINTAKI].find(x=>x.id===id); return k ? {src:k.foto, ph:true} : null; }
+  const o = find(id); if (o && o.foto) return {src:o.foto, ph:true};
+  const g = GORSEL[id]; return g ? {src:`urun-${g[0]}.webp`, w:g[1]} : null;
+}
+const gramTxt = g => String(g).replace(".", lang==="en" ? "." : ",") + " g";
+
+function renderStatic(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent = t(el.dataset.t));
+  document.querySelectorAll("[data-h]").forEach(el=>el.innerHTML = t(el.dataset.h));
+  document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("on", b.dataset.l===lang));
+  $("mosaic").innerHTML = KOLEKSIYON.map(k=>`<article class="tile ${k.cls||""}"${k.anchor?` id="${k.anchor}"`:""}>
+    <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
+    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
+    + extra.filter(x=>x.kat==="pirlanta"||x.kat==="alyans").map(o=>`<article class="tile">
+    <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
+    <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
+  $("stL").innerHTML = ["s1","s2","s3"].map(k=>`<li>${esc(t(k))}<span>${esc(t(k+"d"))}</span></li>`).join("");
+  $("promise").innerHTML = ["p1","p2","p3","p4"].map(k=>`<div><h3>${esc(t(k))}</h3><p>${esc(t(k+"d"))}</p></div>`).join("");
+  $("fDeliv").innerHTML = TESLIM.map(d=>`<label><input type="radio" name="deliv" value="${d}"${d===deliv?" checked":""}>${esc(t("t_"+d))}</label>`).join("");
+  $("fPay").innerHTML = ODEME.map(o=>o.aktif ? `<label><input type="radio" name="pay" value="${o.id}"${o.id===pay?" checked":""}>${esc(t("o_"+o.id))}</label>`
+    : `<label class="dis"><input type="radio" disabled>${esc(t("o_"+o.id))} (${esc(t("soon"))})</label>`).join("");
+  $("waShop").href = waUrl(t("hi")); $("waHero").href = waUrl(t("hiR"));
+}
+function rowHtml(p){ const im = imgOf(p.id);
+  return `<div class="row"><div class="c">${im?`<img src="${im.src}" width="${im.w}" alt="">`:""}</div>
+    <div class="nm">${esc(nm(p))}<small>${gramTxt(p.gram)}</small></div><div class="pr">${euro(priceOf(p))}</div>
+    <button class="plus" data-add="${p.id}" aria-label="${esc(t("add"))}: ${esc(nm(p))}">+</button></div>`; }
+function renderPrices(){
+  $("spotLbl").textContent = t("spotLbl"); $("spotG").textContent = spotG ? euro2(spotG) : "—";
+  let when = t(src);
+  if (priceTime && !isNaN(priceTime)){ const today = priceTime.toDateString() === new Date().toDateString();
+    when += ", " + (today ? priceTime.toLocaleTimeString(loc(),{hour:"2-digit",minute:"2-digit"}) : priceTime.toLocaleDateString(loc())); }
+  $("spotWhen").textContent = when; $("dot").classList.toggle("off", src !== "live");
+  $("lZ").innerHTML = cfg.products.filter(p=>(p.grup||1)===1).map(rowHtml).join("");
+  $("lR").innerHTML = cfg.products.filter(p=>p.grup===2).map(rowHtml).join("");
+  const keep = {}; document.querySelectorAll("[data-gram]").forEach(i=>keep[i.dataset.gram] = i.value);
+  $("bilezik").innerHTML = cfg.bracelets.map(b=>{ const pg = perGram(b), g = +keep[b.id] || 10, im = imgOf(b.id);
+    return `<div class="bcard"><div class="im">${im?`<img src="${im.src}" alt="${esc(nm(b))}">`:""}</div><div>
+      <h3>${esc(nm(b))}</h3><div class="per">${esc(t("bzPer"))} ${euro(pg)}</div>
+      <div class="calc"><input type="number" inputmode="decimal" min="1" step="0.5" value="${g}" data-gram="${b.id}" aria-label="${esc(t("gram"))}"><span>${esc(t("gram"))}</span><span class="sum" data-bp="${b.id}">${euro(pg*g)}</span></div>
+      <button class="btn" data-add="${b.id}">${esc(t("add"))}</button></div></div>`; }).join("")
+    + `<div class="gset"><img src="${ALTINTAKI.foto}" alt="" loading="lazy"><div><h3>${esc(t(ALTINTAKI.id))}</h3><p>${esc(t("d-"+ALTINTAKI.id))}</p><button class="go" data-ask="${ALTINTAKI.id}">${esc(t("ask"))}</button></div></div>`;
+  renderCart();
+}
+function cartLines(){
+  return cart.map(it=>{ if (isAsk(it.id)) return {it, ask:true, u:0, sum:0, label:t(it.id)};
+    const o = find(it.id); if (!o) return null; const u = unitPrice(it);
+    return {it, u, sum:u*it.q, label: nm(o) + (isBracelet(it.id) ? ` ${gramTxt(it.g)}` : "")}; }).filter(Boolean);
+}
+function renderCart(){
+  const L = cartLines(), asks = L.filter(l=>l.ask).length;
+  $("cartN").textContent = L.reduce((a,l)=>a+l.it.q,0);
+  $("form").style.display = L.length ? "" : "none";
+  $("items").innerHTML = L.length ? L.map((l,i)=>{ const im = imgOf(l.it.id);
+    return `<div class="ci"><div class="im">${im?`<img ${im.ph?'class="ph"':""} src="${esc(im.src)}" alt="">`:""}</div>
+      <div><div class="n">${esc(l.label)}</div>${l.ask?"":`<div class="s">${euro(l.u)} / ${esc(t("piece"))}</div>`}
+      <div class="qty"><button data-q="${i}" data-d="-1" aria-label="−">−</button><span>${l.it.q}</span><button data-q="${i}" data-d="1" aria-label="+">+</button></div></div>
+      <div class="v${l.ask?" ask":""}">${l.ask?esc(t("askShort")):euro(l.sum)}</div></div>`; }).join("") : `<div class="empty">${esc(t("empty"))}</div>`;
+  $("total").textContent = euro(L.reduce((a,l)=>a+l.sum,0));
+  $("priceNote").textContent = (asks ? t("askNote")(asks) + " " : "") + t("priceNote");
+  ls.set("ms_cart2", JSON.stringify(cart));
+}
+function toast(m){ const e = $("toast"); e.textContent = m; e.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(()=>e.classList.remove("on"), 1700); }
+function openCart(on){ $("drawer").classList.toggle("on", on); $("ovl").classList.toggle("on", on); $("drawer").setAttribute("aria-hidden", on?"false":"true"); $("err").classList.remove("on"); }
+function addToCart(id, ask){
+  let g = null;
+  if (!ask && isBracelet(id)){ const inp = document.querySelector(`[data-gram="${id}"]`); g = Math.max(1, +(inp && inp.value) || 10); }
+  const ex = cart.find(c=>c.id===id && (c.g||null)===g);
+  if (ex){ if (!ask) ex.q++; } else cart.push({id, q:1, g});
+  renderCart(); toast(t(ask ? "asked" : "added"));
+}
+function orderMessage(){
+  const L = cartLines(), name = $("fName").value.trim(), note = $("fNote").value.trim(), lines = [t("mHead"), ""];
+  L.forEach(l=>lines.push(`• ${l.it.q} × ${l.label} — ${l.ask ? t("mAsk") : euro(l.sum)}`));
+  if (L.some(l=>!l.ask)) lines.push("", `*${t("mTotal")}: ${euro(L.reduce((a,l)=>a+l.sum,0))}*`, `${t("mSpot")}: ${euro2(spotG)} / g (${t(src)})`);
+  lines.push("", `${t("mName")}: ${name}`, `${t("mDeliv")}: ${t("t_"+deliv)}`, `${t("mPay")}: ${t("o_"+pay)}`);
+  if (note) lines.push(`${t("mNote")}: ${note}`);
+  return lines.join("\n");
+}
+document.addEventListener("click", e=>{
+  const k = e.target.closest("[data-ask]"); if (k) return addToCart(k.dataset.ask, true);
+  const a = e.target.closest("[data-add]"); if (a) return addToCart(a.dataset.add);
+  const q = e.target.closest("[data-q]"); if (q){ const it = cart[+q.dataset.q]; if (it){ it.q += +q.dataset.d; if (it.q <= 0) cart.splice(+q.dataset.q,1); renderCart(); } return; }
+  const l = e.target.closest("#lang button"); if (l){ lang = l.dataset.l; ls.set("ms_lang", lang); renderStatic(); renderPrices(); }
+});
+document.addEventListener("input", e=>{ const g = e.target.dataset && e.target.dataset.gram; if (!g) return;
+  const b = find(g), el = document.querySelector(`[data-bp="${g}"]`); if (b && el) el.textContent = euro(perGram(b) * Math.max(0, +e.target.value||0)); });
+document.addEventListener("change", e=>{ if (e.target.name === "deliv") deliv = e.target.value; if (e.target.name === "pay") pay = e.target.value; });
+document.addEventListener("keydown", e=>{ if (e.key === "Escape") openCart(false); });
+$("cartBtn").onclick = ()=>openCart(true); $("closeBtn").onclick = $("ovl").onclick = ()=>openCart(false);
+$("sendBtn").onclick = ()=>{ const err = $("err");
+  if (!cartLines().length){ err.textContent = t("needItem"); return err.classList.add("on"); }
+  if (!$("fName").value.trim()){ err.textContent = t("needName"); err.classList.add("on"); return $("fName").focus(); }
+  err.classList.remove("on");
+  const a = document.createElement("a"); a.href = waUrl(orderMessage()); a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); };
+window.addEventListener("hashchange", ()=>temaUygula(TEMA));
+(async function(){
+  temaUygula(TEMA); cfg = CFG_YEDEK; spotG = CFG_YEDEK.fallbackOzEur/OZ; renderStatic(); renderPrices();
+  await loadConfig(); renderStatic(); await fetchSpot(); setInterval(fetchSpot, 60000);
+})();
+
+/* urunler.json örneği – gerçek Zen modelleri buraya eklenir, mozaikte kendi kartıyla görünür:
+[{"id":"zen-1001","kat":"pirlanta","tr":"Tektaş Yüzük 0,30 ct","de":"Solitärring 0,30 ct","en":"Solitaire ring 0.30 ct",
+  "foto":"urun/zen-1001.jpg","fiyat":1490,"aciklama":"14 ayar beyaz altın"}] */
+</script>
+</body>
+</html>
