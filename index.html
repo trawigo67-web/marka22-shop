@@ -138,6 +138,27 @@ section{padding:74px 0 0;scroll-margin-top:80px}
 .gset h3{font-size:26px;line-height:1.05}
 .gset p{color:var(--soft);font-size:15px;margin-top:4px}
 
+#takiH .x{background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;padding:0 .08em}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -22px 22px;padding:0 22px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{white-space:nowrap;border:1px solid var(--rule);padding:9px 16px;font-size:15px;font-weight:400;background:var(--surface)}
+.chips button small{color:var(--soft);font-weight:300;margin-left:6px;font-size:13px}
+.chips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chips button.on small{color:inherit;opacity:.7}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 14px}
+@media(min-width:700px){.pgrid{grid-template-columns:repeat(3,1fr);gap:34px 22px}}
+@media(min-width:1000px){.pgrid{grid-template-columns:repeat(4,1fr)}}
+.pc{display:flex;flex-direction:column}
+.pc .im{aspect-ratio:1/1;background:#fff;overflow:hidden;border:1px solid var(--rule)}
+.pc .im img{width:100%;height:100%;object-fit:cover}
+.pc h3{font-family:var(--body);font-weight:400;font-size:15.5px;line-height:1.3;letter-spacing:0;margin-top:10px}
+.pc .sku{color:var(--soft);font-size:13px}
+.pc .pp{font-family:var(--disp);font-size:26px;font-variant-numeric:tabular-nums lining-nums;margin-top:auto;padding-top:4px}
+.pc .go{margin-top:6px}
+.more{display:flex;justify-content:center;margin-top:34px}
+.more .btn{background:transparent;color:var(--text);border:1px solid var(--ink)}
+html.koyu .more .btn{background:transparent;color:var(--text)}
+
 .promise{display:grid;grid-template-columns:1fr;border-top:1px solid var(--ink)}
 .promise div{padding:20px 0;border-bottom:1px solid var(--rule)}
 @media(min-width:800px){.promise{grid-template-columns:repeat(4,1fr)}.promise div{padding:22px 22px 6px 0;border-bottom:0}.promise div+div{padding-left:22px;border-left:1px solid var(--rule)}}
@@ -260,8 +281,10 @@ html.koyu .opt input{accent-color:#e2c878}
   </div></section>
 
   <section id="taki"><div class="wrap">
-    <div class="head"><h2 data-t="takiH"></h2><p data-t="takiP"></p></div>
-    <div class="mosaic" id="taki4"></div>
+    <div class="head"><h2 id="takiH"></h2><p id="takiP"></p></div>
+    <div class="chips" id="takiChips"></div>
+    <div id="taki4"></div>
+    <div class="more" id="takiMore"></div>
   </div></section>
 
   <section><div class="wrap"><div class="promise" id="promise"></div></div></section>
@@ -374,7 +397,8 @@ const T = {
   "k-kupe":"Küpe","d-k-kupe":"Tektaş ve halka pırlanta küpeler.",
   "k-bileklik":"Su yolu bileklik","d-k-bileklik":"Su yolu ve tasarım bileklikler.",
   "k-altintaki":"Set","d-k-altintaki":"Kolye, küpe ve yüzükten oluşan takımlar.",
-  nTak:"Altın takı",takiH:"Altın takı",takiP:"Zarif ve modern altın takılar. İlgilendiğiniz grubu sepete ekleyin, güncel modelleri ve fiyatları gönderelim.",
+  nTak:"Altın takı",takiH:"Altın takı",seseraP:"Sesera Gold'un zarif ve modern altın takı koleksiyonu, Marka Istanbul'da. Beğendiğiniz modeli sepete ekleyin; fiyat ve stok WhatsApp'ta onaylanır.",takiP0:"Zarif ve modern altın takılar. İlgilendiğiniz grubu sepete ekleyin, güncel modelleri ve fiyatları gönderelim.",
+  tk_kolye:"Kolye",tk_kolyeucu:"Kolye ucu",tk_kupe:"Küpe",tk_yuzuk:"Yüzük",tk_piercing:"Piercing",tk_set:"Set",more:"Daha fazla göster",
   "k-akolye":"Kolye","d-k-akolye":"Zincir, taşlı ve harf kolyeler, kolye uçları.",
   "k-akupe":"Küpe","d-k-akupe":"Halka, taşlı ve sallantılı küpeler.",
   "k-ayuzuk":"Yüzük","d-k-ayuzuk":"Sade ve taşlı altın yüzükler.",
@@ -393,7 +417,7 @@ const T = {
   total:"Toplam",priceNote:"Altın fiyatı anlık değişir; fiyat WhatsApp'ta onaylanınca kesinleşir.",askNote:n=>`${n} ürün için fiyat WhatsApp'ta bildirilecek.`,
   send:"Siparişi WhatsApp'tan gönder",needName:"Lütfen adınızı yazın.",needItem:"Sepetiniz boş.",
   disclaimer:"Fiyatlar bilgi amaçlıdır ve altın piyasasına göre anlık değişir. Kesin fiyat, siparişiniz WhatsApp üzerinden onaylandığında belirlenir.",
-  imgNote:"Koleksiyon fotoğrafları temsilidir; güncel modeller mağazamızda ve WhatsApp'ta.",imprint:"Künye (Impressum)",
+  imgNote:"Pırlanta koleksiyon fotoğrafları temsilidir; güncel modeller mağazamızda ve WhatsApp'ta. Sesera Gold ürün fotoğrafları Sesera Gold'a aittir.",imprint:"Künye (Impressum)",
   spotLbl:"Has altın 1 g",live:"canlı",daily:"günlük",offline:"son bilinen",manual:"dükkân fiyatı",
   hi:"Merhaba, bilgi almak istiyorum.",hiR:"Merhaba, mağazanızda randevu almak istiyorum.",
   mHead:"*Yeni sipariş – marka22.shop*",mAsk:"fiyat sorulacak",mName:"Müşteri",mDeliv:"Teslimat",mPay:"Ödeme",mNote:"Not",mTotal:"Toplam (anlık kur)",mSpot:"Has altın"},
@@ -410,7 +434,8 @@ const T = {
   "k-kupe":"Ohrringe","d-k-kupe":"Solitär-Ohrstecker und Creolen.",
   "k-bileklik":"Tennisarmband","d-k-bileklik":"Tennis- und Designarmbänder.",
   "k-altintaki":"Sets","d-k-altintaki":"Garnituren aus Kette, Ohrringen und Ring.",
-  nTak:"Goldschmuck",takiH:"Goldschmuck",takiP:"Feiner, moderner Goldschmuck. Legen Sie eine Gruppe in den Warenkorb, wir senden aktuelle Modelle und Preise.",
+  nTak:"Goldschmuck",takiH:"Goldschmuck",seseraP:"Die feine, moderne Goldschmuck-Kollektion von Sesera Gold bei Marka Istanbul. Legen Sie Ihr Modell in den Warenkorb; Preis und Verfügbarkeit bestätigen wir per WhatsApp.",takiP0:"Feiner, moderner Goldschmuck. Legen Sie eine Gruppe in den Warenkorb, wir senden aktuelle Modelle und Preise.",
+  tk_kolye:"Ketten",tk_kolyeucu:"Anhänger",tk_kupe:"Ohrringe",tk_yuzuk:"Ringe",tk_piercing:"Piercing",tk_set:"Sets",more:"Mehr anzeigen",
   "k-akolye":"Ketten","d-k-akolye":"Ketten, Steinbesatz, Buchstaben und Anhänger.",
   "k-akupe":"Ohrringe","d-k-akupe":"Creolen, Ohrstecker mit Stein und Hänger.",
   "k-ayuzuk":"Ringe","d-k-ayuzuk":"Schlichte Goldringe und Ringe mit Stein.",
@@ -429,7 +454,7 @@ const T = {
   total:"Summe",priceNote:"Der Goldpreis ändert sich laufend; der Preis steht mit der Bestätigung per WhatsApp fest.",askNote:n=>`Für ${n} Artikel nennen wir den Preis per WhatsApp.`,
   send:"Bestellung per WhatsApp senden",needName:"Bitte geben Sie Ihren Namen ein.",needItem:"Ihr Warenkorb ist leer.",
   disclaimer:"Die Preise dienen der Information und ändern sich mit dem Goldmarkt. Der verbindliche Preis wird mit der Bestätigung Ihrer Bestellung per WhatsApp festgelegt.",
-  imgNote:"Kollektionsfotos sind Beispielbilder; aktuelle Modelle im Geschäft und per WhatsApp.",imprint:"Impressum",
+  imgNote:"Fotos der Brillantkollektion sind Beispielbilder; aktuelle Modelle im Geschäft und per WhatsApp. Produktfotos von Sesera Gold: © Sesera Gold.",imprint:"Impressum",
   spotLbl:"Feingold 1 g",live:"live",daily:"Tagespreis",offline:"letzter Stand",manual:"Ladenpreis",
   hi:"Hallo, ich hätte gern eine Auskunft.",hiR:"Hallo, ich möchte einen Termin in Ihrem Geschäft vereinbaren.",
   mHead:"*Neue Bestellung – marka22.shop*",mAsk:"Preis auf Anfrage",mName:"Kunde",mDeliv:"Lieferung",mPay:"Zahlung",mNote:"Notiz",mTotal:"Summe (aktueller Kurs)",mSpot:"Feingold"},
@@ -446,7 +471,8 @@ const T = {
   "k-kupe":"Earrings","d-k-kupe":"Solitaire studs and hoops.",
   "k-bileklik":"Tennis bracelet","d-k-bileklik":"Tennis and design bracelets.",
   "k-altintaki":"Sets","d-k-altintaki":"Matching necklace, earrings and ring.",
-  nTak:"Gold jewellery",takiH:"Gold jewellery",takiP:"Fine, modern gold jewellery. Add a group to your bag and we'll send current models and prices.",
+  nTak:"Gold jewellery",takiH:"Gold jewellery",seseraP:"Sesera Gold's fine, modern gold jewellery collection at Marka Istanbul. Add the piece you like to your bag; price and availability are confirmed on WhatsApp.",takiP0:"Fine, modern gold jewellery. Add a group to your bag and we'll send current models and prices.",
+  tk_kolye:"Necklaces",tk_kolyeucu:"Pendants",tk_kupe:"Earrings",tk_yuzuk:"Rings",tk_piercing:"Piercing",tk_set:"Sets",more:"Show more",
   "k-akolye":"Necklaces","d-k-akolye":"Chains, stone-set and letter necklaces, pendants.",
   "k-akupe":"Earrings","d-k-akupe":"Hoops, stone-set studs and drops.",
   "k-ayuzuk":"Rings","d-k-ayuzuk":"Plain and stone-set gold rings.",
@@ -465,7 +491,7 @@ const T = {
   total:"Total",priceNote:"The gold price keeps moving; your price is fixed once confirmed on WhatsApp.",askNote:n=>`We'll send the price for ${n} item(s) on WhatsApp.`,
   send:"Send order on WhatsApp",needName:"Please enter your name.",needItem:"Your bag is empty.",
   disclaimer:"Prices are for information and move with the gold market. The binding price is set when your order is confirmed on WhatsApp.",
-  imgNote:"Collection photos are illustrative; current models in store and on WhatsApp.",imprint:"Imprint",
+  imgNote:"Diamond collection photos are illustrative; current models in store and on WhatsApp. Sesera Gold product photos © Sesera Gold.",imprint:"Imprint",
   spotLbl:"Fine gold 1 g",live:"live",daily:"daily",offline:"last known",manual:"shop price",
   hi:"Hello, I'd like some information.",hiR:"Hello, I'd like to book a visit to your store.",
   mHead:"*New order – marka22.shop*",mAsk:"price on request",mName:"Customer",mDeliv:"Delivery",mPay:"Payment",mNote:"Note",mTotal:"Total (current rate)",mSpot:"Fine gold"}
@@ -478,6 +504,12 @@ const t = k => T[lang][k] ?? T.tr[k] ?? k;
 let cfg = null, spotG = 0, src = "offline", priceTime = null, extra = [];
 let cart = []; try{ cart = JSON.parse(ls.get("ms_cart2")) || []; }catch(e){ cart = []; }
 let deliv = "dukkan", pay = "dukkan";
+// Altın takı kataloğu (takilar.json): tedarikçi ürünleri, izinli fotoğraflar; euro fiyatı = normal TL fiyatı ÷ kur, 5 €'ya yukarı yuvarlanır (dosya üretilirken hesaplanır)
+const TAKI_CDN = "https://cdn.shopify.com/s/files/1/0605/4559/7574/files/";
+const TAKI_KAT = ["kolye","kolyeucu","kupe","yuzuk","piercing","set"];
+let TAKI = [], takiKat = "kolye", takiN = 12;
+// ayar.json: {"sesera": true|false} – Sesera × Marka bölümünü açar / kapatır (kapalıyken genel "Altın takı" kartları görünür)
+let AYAR = {sesera:true};
 const loc = () => ({tr:"tr-TR",de:"de-DE",en:"en-GB"}[lang]);
 const euro = v => Math.round(v).toLocaleString(loc()) + " €";
 const euro2 = v => v.toLocaleString(loc(),{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
@@ -507,6 +539,10 @@ async function loadConfig(){
   catch(e){ try{ cfg = JSON.parse(ls.get("ms_cfg")); }catch(_){ } }
   if (!cfg || !cfg.products) cfg = CFG_YEDEK;
   try{ const u = await getJSON("urunler.json?v=" + Date.now(), 4000); if (Array.isArray(u)) extra = u; }catch(e){ extra = []; }
+  try{ const a = await getJSON("ayar.json?v=" + Date.now(), 4000); if (a && typeof a === "object") AYAR = Object.assign({sesera:true}, a); }catch(e){}
+  if (AYAR.sesera === false){ TAKI = []; } else
+  try{ const k = await getJSON("takilar.json?v=" + Date.now(), 8000);
+    if (Array.isArray(k)) TAKI = k.map(o=>({id:"s-"+o.i, sku:o.i, k:o.k, tr:o.n, foto:TAKI_CDN+o.f+"&width=600", fiyat:o.p})); }catch(e){ TAKI = []; }
 }
 async function fetchSpot(){
   if (cfg.manualSpot){ spotG = +cfg.manualSpot; src = "manual"; priceTime = new Date(); return renderPrices(); }
@@ -528,7 +564,7 @@ function priceOf(p){
   return Math.floor(p.satisMilyem ? p.gram*(p.satisMilyem/1000)*spotG : p.gram*p.purity*spotG*(1+(p.satis||0)/100) + (+p.iscilik||0));
 }
 function perGram(b){ return Math.floor(b.satisMilyem ? (b.satisMilyem/1000)*spotG : b.purity*spotG*(1+(b.satis||0)/100) + (+b.iscilik||0)); }
-const find = id => cfg.products.find(x=>x.id===id) || cfg.bracelets.find(x=>x.id===id) || extra.find(x=>x.id===id);
+const find = id => cfg.products.find(x=>x.id===id) || cfg.bracelets.find(x=>x.id===id) || extra.find(x=>x.id===id) || TAKI.find(x=>x.id===id);
 const isBracelet = id => !!cfg.bracelets.find(x=>x.id===id);
 function unitPrice(it){ const o = find(it.id); if (!o) return 0;
   if (isBracelet(it.id)) return perGram(o) * (+it.g||0); if (o.fiyat != null) return +o.fiyat; return priceOf(o); }
@@ -550,18 +586,33 @@ function renderStatic(){
     + extra.filter(x=>x.kat==="pirlanta"||x.kat==="alyans").map(o=>`<article class="tile">
     <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
     <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
-  $("taki4").innerHTML = ALTINTAKI.map(k=>`<article class="tile">
-    <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
-    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
-    + extra.filter(x=>x.kat==="taki").map(o=>`<article class="tile">
-    <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
-    <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
+  renderTaki();
   $("stL").innerHTML = ["s1","s2","s3"].map(k=>`<li>${esc(t(k))}<span>${esc(t(k+"d"))}</span></li>`).join("");
   $("promise").innerHTML = ["p1","p2","p3","p4"].map(k=>`<div><h3>${esc(t(k))}</h3><p>${esc(t(k+"d"))}</p></div>`).join("");
   $("fDeliv").innerHTML = TESLIM.map(d=>`<label><input type="radio" name="deliv" value="${d}"${d===deliv?" checked":""}>${esc(t("t_"+d))}</label>`).join("");
   $("fPay").innerHTML = ODEME.map(o=>o.aktif ? `<label><input type="radio" name="pay" value="${o.id}"${o.id===pay?" checked":""}>${esc(t("o_"+o.id))}</label>`
     : `<label class="dis"><input type="radio" disabled>${esc(t("o_"+o.id))} (${esc(t("soon"))})</label>`).join("");
   $("waShop").href = waUrl(t("hi")); $("waHero").href = waUrl(t("hiR"));
+}
+function renderTaki(){
+  $("takiH").innerHTML = TAKI.length ? `Sesera Gold <span class="x">×</span> Marka Istanbul` : esc(t("takiH"));
+  $("takiP").textContent = t(TAKI.length ? "seseraP" : "takiP0");
+  if (!TAKI.length){
+    $("taki4").className = "mosaic"; $("takiChips").innerHTML = ""; $("takiMore").innerHTML = "";
+    $("taki4").innerHTML = ALTINTAKI.map(k=>`<article class="tile">
+    <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
+    <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
+    + extra.filter(x=>x.kat==="taki").map(o=>`<article class="tile">
+    <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
+    <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
+    return;
+  }
+  $("takiChips").innerHTML = TAKI_KAT.map(k=>`<button data-kat="${k}"${k===takiKat?' class="on"':''}>${esc(t("tk_"+k))}<small>${TAKI.filter(x=>x.k===k).length}</small></button>`).join("");
+  const L = TAKI.filter(x=>x.k===takiKat);
+  $("taki4").className = "pgrid";
+  $("taki4").innerHTML = L.slice(0, takiN).map(o=>`<article class="pc"><div class="im"><img src="${esc(o.foto)}" alt="${esc(o.tr)}" loading="lazy"></div>
+    <h3>${esc(o.tr)}</h3><div class="sku">${esc(o.sku)}</div><div class="pp">${euro(o.fiyat)}</div><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
+  $("takiMore").innerHTML = L.length > takiN ? `<button class="btn" data-more="1">${esc(t("more"))} (${L.length - takiN})</button>` : "";
 }
 function rowHtml(p){ const im = imgOf(p.id);
   return `<div class="row"><div class="c">${im?`<img src="${im.src}" width="${im.w}" alt="">`:""}</div>
@@ -586,7 +637,7 @@ function renderPrices(){
 function cartLines(){
   return cart.map(it=>{ if (isAsk(it.id)) return {it, ask:true, u:0, sum:0, label:t(it.id)};
     const o = find(it.id); if (!o) return null; const u = unitPrice(it);
-    return {it, u, sum:u*it.q, label: nm(o) + (isBracelet(it.id) ? ` ${gramTxt(it.g)}` : "")}; }).filter(Boolean);
+    return {it, u, sum:u*it.q, label: nm(o) + (isBracelet(it.id) ? ` ${gramTxt(it.g)}` : "") + (o.sku ? ` (${o.sku})` : "")}; }).filter(Boolean);
 }
 function renderCart(){
   const L = cartLines(), asks = L.filter(l=>l.ask).length;
@@ -619,6 +670,8 @@ function orderMessage(){
   return lines.join("\n");
 }
 document.addEventListener("click", e=>{
+  const kt = e.target.closest("[data-kat]"); if (kt){ takiKat = kt.dataset.kat; takiN = 12; return renderTaki(); }
+  if (e.target.closest("[data-more]")){ takiN += 12; return renderTaki(); }
   const k = e.target.closest("[data-ask]"); if (k) return addToCart(k.dataset.ask, true);
   const a = e.target.closest("[data-add]"); if (a) return addToCart(a.dataset.add);
   const q = e.target.closest("[data-q]"); if (q){ const it = cart[+q.dataset.q]; if (it){ it.q += +q.dataset.d; if (it.q <= 0) cart.splice(+q.dataset.q,1); renderCart(); } return; }
