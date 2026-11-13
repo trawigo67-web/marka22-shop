@@ -617,8 +617,11 @@ function unitPrice(it){ const o = find(it.id); if (!o) return 0;
   if (isBracelet(it.id)) return perGram(o) * (+it.g||0); if (o.fiyat != null) return +o.fiyat; return priceOf(o); }
 function imgOf(id){
   if (isAsk(id)){ const k = [...KOLEKSIYON, ...ALTINTAKI].find(x=>x.id===id); return k ? {src:k.foto, ph:true} : null; }
-  const o = find(id); if (o && o.foto) return {src:o.foto, ph:true};
-  const g = GORSEL[id]; return g ? {src:`urun-${g[0]}.webp`, w:g[1]} : null;
+  const g = GORSEL[id]; if (g) return {src:`urun-${g[0]}.webp`, w:g[1]};   // bilinen ürünlerde kendi kesilmiş görselimiz
+  const o = find(id); if (!o || !o.foto) return null;
+  // Çeyrekmatik yöneticisinden gelen ürün fotoğrafları oranın adresine göredir
+  const cm = cfg.products.includes(o) || cfg.bracelets.includes(o);
+  return {src: cm && !/^(https?:|data:)/.test(o.foto) ? CEYREKMATIK + o.foto : o.foto, ph:true};
 }
 const gramTxt = g => String(g).replace(".", lang==="en" ? "." : ",") + " g";
 
