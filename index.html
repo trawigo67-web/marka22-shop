@@ -154,6 +154,7 @@ section{padding:74px 0 0;scroll-margin-top:80px}
 .pc h3{font-family:var(--body);font-weight:400;font-size:15.5px;line-height:1.3;letter-spacing:0;margin-top:10px}
 .pc .sku{color:var(--soft);font-size:13px}
 .pc .pp{font-family:var(--disp);font-size:26px;font-variant-numeric:tabular-nums lining-nums;margin-top:auto;padding-top:4px}
+.pc .pp.ask{font-family:var(--body);font-size:14px;color:var(--soft)}
 .pc .go{margin-top:6px}
 .more{display:flex;justify-content:center;margin-top:34px}
 .more .btn{background:transparent;color:var(--text);border:1px solid var(--ink)}
@@ -260,6 +261,11 @@ html.koyu .opt input{accent-color:#e2c878}
 </div>
 
 <main>
+  <section id="yeni" hidden><div class="wrap">
+    <div class="head"><h2 data-t="yeniH"></h2><p data-t="yeniP"></p></div>
+    <div class="pgrid" id="yeniG"></div>
+  </div></section>
+
   <section id="pirlanta"><div class="wrap">
     <div class="head"><h2 data-t="pirH"></h2><p data-t="pirP"></p></div>
     <div class="mosaic" id="mosaic"></div>
@@ -402,7 +408,7 @@ const T = {
   "k-akolye":"Kolye","d-k-akolye":"Zincir, taşlı ve harf kolyeler, kolye uçları.",
   "k-akupe":"Küpe","d-k-akupe":"Halka, taşlı ve sallantılı küpeler.",
   "k-ayuzuk":"Yüzük","d-k-ayuzuk":"Sade ve taşlı altın yüzükler.",
-  ask:"Modelleri ve fiyatı iste",askShort:"Fiyat WhatsApp'ta",asked:"İsteğe eklendi",
+  yeniH:"Vitrinden",yeniP:"Mağazamızdan seçtiklerimiz. Beğendiğinizi sepete ekleyin, WhatsApp'tan onaylayalım.",askOne:"Fiyat iste",ask:"Modelleri ve fiyatı iste",askShort:"Fiyat WhatsApp'ta",asked:"İsteğe eklendi",
   stH:"Pırlantayı güvenle almak",stP:"Zen Diamond, Türkiye'nin en tanınan pırlanta markalarından biridir. Biz bu koleksiyonları Köln'de yüz yüze, Türkçe ve Almanca danışmanlıkla sunuyoruz.",
   s1:"Yetkili bayi",s1d:"Zen Diamond ürünleri doğrudan markadan gelir.",s2:"Dükkânda deneyin",s2d:"Karar vermeden önce görün, parmağınızda deneyin.",s3:"Kişisel danışmanlık",s3d:"Bütçenize ve ölçünüze göre birlikte seçelim.",
   altH:"Altın, bugünün kuruyla",altP:"Ziynet ve Reşat fiyatları has altın kuruna göre her dakika yenilenir. Eklediğiniz ürün sepete o anki fiyatla girer.",
@@ -439,7 +445,7 @@ const T = {
   "k-akolye":"Ketten","d-k-akolye":"Ketten, Steinbesatz, Buchstaben und Anhänger.",
   "k-akupe":"Ohrringe","d-k-akupe":"Creolen, Ohrstecker mit Stein und Hänger.",
   "k-ayuzuk":"Ringe","d-k-ayuzuk":"Schlichte Goldringe und Ringe mit Stein.",
-  ask:"Modelle und Preis anfragen",askShort:"Preis per WhatsApp",asked:"Zur Anfrage hinzugefügt",
+  yeniH:"Aus dem Schaufenster",yeniP:"Ausgewählte Stücke aus unserem Geschäft. In den Warenkorb legen, wir bestätigen per WhatsApp.",askOne:"Preis anfragen",ask:"Modelle und Preis anfragen",askShort:"Preis per WhatsApp",asked:"Zur Anfrage hinzugefügt",
   stH:"Brillanten mit Sicherheit kaufen",stP:"Zen Diamond gehört zu den bekanntesten Brillantmarken der Türkei. Wir zeigen diese Kollektionen in Köln persönlich, mit Beratung auf Deutsch und Türkisch.",
   s1:"Autorisierter Händler",s1d:"Zen Diamond Stücke kommen direkt von der Marke.",s2:"Im Geschäft anprobieren",s2d:"Ansehen und anprobieren, bevor Sie entscheiden.",s3:"Persönliche Beratung",s3d:"Wir wählen gemeinsam nach Budget und Größe.",
   altH:"Gold zum heutigen Kurs",altP:"Ziynet- und Reşat-Preise folgen dem Feingoldkurs und werden jede Minute aktualisiert. Ihr Artikel kommt zum aktuellen Preis in den Warenkorb.",
@@ -476,7 +482,7 @@ const T = {
   "k-akolye":"Necklaces","d-k-akolye":"Chains, stone-set and letter necklaces, pendants.",
   "k-akupe":"Earrings","d-k-akupe":"Hoops, stone-set studs and drops.",
   "k-ayuzuk":"Rings","d-k-ayuzuk":"Plain and stone-set gold rings.",
-  ask:"Ask for models and price",askShort:"Price on WhatsApp",asked:"Added to your request",
+  yeniH:"From our window",yeniP:"Selected pieces from our store. Add to your bag and we'll confirm on WhatsApp.",askOne:"Ask for price",ask:"Ask for models and price",askShort:"Price on WhatsApp",asked:"Added to your request",
   stH:"Buying a diamond with confidence",stP:"Zen Diamond is one of Türkiye's best-known diamond brands. We show these collections in Cologne in person, with advice in German and Turkish.",
   s1:"Authorised dealer",s1d:"Zen Diamond pieces come straight from the brand.",s2:"Try it in store",s2d:"See it and try it on before you decide.",s3:"Personal advice",s3d:"We choose together, to your budget and size.",
   altH:"Gold at today's rate",altP:"Ziynet and Reşat prices follow the fine gold rate and refresh every minute. Your item enters the bag at the current price.",
@@ -583,10 +589,14 @@ function renderStatic(){
   $("mosaic").innerHTML = KOLEKSIYON.map(k=>`<article class="tile ${k.cls||""}"${k.anchor?` id="${k.anchor}"`:""}>
     <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
     <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
-    + extra.filter(x=>x.kat==="pirlanta"||x.kat==="alyans").map(o=>`<article class="tile">
+    + [].map(o=>`<article class="tile">
     <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
     <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
   renderTaki();
+  // Vitrin: yönetici ekranından eklenen ürünler (urunler.json)
+  $("yeni").hidden = !extra.length;
+  $("yeniG").innerHTML = extra.map(o=>`<article class="pc"><div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
+    <h3>${esc(nm(o))}</h3><div class="sku">${esc(o.aciklama||"")}</div><div class="pp${o.fiyat!=null?"":" ask"}">${o.fiyat!=null?euro(o.fiyat):esc(t("askShort"))}</div><button class="go" data-add="${esc(o.id)}">${esc(t(o.fiyat!=null?"add":"askOne"))}</button></article>`).join("");
   $("stL").innerHTML = ["s1","s2","s3"].map(k=>`<li>${esc(t(k))}<span>${esc(t(k+"d"))}</span></li>`).join("");
   $("promise").innerHTML = ["p1","p2","p3","p4"].map(k=>`<div><h3>${esc(t(k))}</h3><p>${esc(t(k+"d"))}</p></div>`).join("");
   $("fDeliv").innerHTML = TESLIM.map(d=>`<label><input type="radio" name="deliv" value="${d}"${d===deliv?" checked":""}>${esc(t("t_"+d))}</label>`).join("");
@@ -602,7 +612,7 @@ function renderTaki(){
     $("taki4").innerHTML = ALTINTAKI.map(k=>`<article class="tile">
     <div class="im"><img src="${k.foto}" alt="${esc(t(k.id))}" loading="lazy"></div>
     <h3>${esc(t(k.id))}</h3><p>${esc(t("d-"+k.id))}</p><button class="go" data-ask="${k.id}">${esc(t("ask"))}</button></article>`).join("")
-    + extra.filter(x=>x.kat==="taki").map(o=>`<article class="tile">
+    + [].map(o=>`<article class="tile">
     <div class="im"><img src="${esc(o.foto||"")}" alt="${esc(nm(o))}" loading="lazy"></div>
     <h3>${esc(nm(o))}</h3><p>${esc(o.aciklama||"")}${o.fiyat!=null?` ${euro(o.fiyat)}`:""}</p><button class="go" data-add="${esc(o.id)}">${esc(t("add"))}</button></article>`).join("");
     return;
@@ -636,7 +646,9 @@ function renderPrices(){
 }
 function cartLines(){
   return cart.map(it=>{ if (isAsk(it.id)) return {it, ask:true, u:0, sum:0, label:t(it.id)};
-    const o = find(it.id); if (!o) return null; const u = unitPrice(it);
+    const o = find(it.id); if (!o) return null;
+    if (o.fiyat == null && !o.gram && !isBracelet(it.id)) return {it, ask:true, u:0, sum:0, label:nm(o)};
+    const u = unitPrice(it);
     return {it, u, sum:u*it.q, label: nm(o) + (isBracelet(it.id) ? ` ${gramTxt(it.g)}` : "") + (o.sku ? ` (${o.sku})` : "")}; }).filter(Boolean);
 }
 function renderCart(){
