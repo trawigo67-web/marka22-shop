@@ -765,7 +765,7 @@ $("sendBtn").onclick = ()=>{ const err = $("err");
 window.addEventListener("hashchange", ()=>temaUygula(TEMA));
 (async function(){
   temaUygula(TEMA); cfg = CFG_YEDEK; spotG = CFG_YEDEK.fallbackOzEur/OZ; renderStatic(); renderPrices();
-  await loadConfig(); renderStatic();
+  await loadConfig(); renderStatic(); renderPrices();   // Çeyrekmatik ayarları yüklenince satırlar yenilenir
   if (P()){ await fetchSpot(); setInterval(fetchSpot, 60000); }   // fiyat gizliyken dış kur servisine hiç gidilmez
 })();
 
