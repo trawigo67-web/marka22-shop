@@ -4,7 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0d0d">
-<meta name="description" content="Marka Istanbul Köln – yetkili Zen Diamond bayisi. Tektaş, alyans, baget ve pırlanta koleksiyonları; 22 ayar bilezik, ziynet ve Reşat altın güncel kurla.">
+<meta name="description" content="Köln Keupstraße'de yetkili Zen Diamond bayisi: tektaş, alyans, pırlanta, bilezik, ziynet ve altın takı. Ürünü seçin, WhatsApp'tan sorun, dükkândan alın.">
+<link rel="canonical" href="https://marka22.shop/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marka Istanbul">
+<meta property="og:title" content="Marka Istanbul – Zen Diamond Köln">
+<meta property="og:description" content="Yetkili Zen Diamond bayisi, Köln Keupstraße. Ürünü seçin, WhatsApp'tan sorun, dükkândan alın.">
+<meta property="og:url" content="https://marka22.shop/">
+<meta property="og:image" content="https://marka22.shop/g-hero.jpg">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"JewelryStore","name":"Marka Istanbul","url":"https://marka22.shop/","image":"https://marka22.shop/g-hero.jpg","telephone":"+4922180039255","address":{"@type":"PostalAddress","streetAddress":"Keupstraße 52-54","postalCode":"51063","addressLocality":"Köln","addressCountry":"DE"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"19:00"}],"sameAs":["https://www.instagram.com/markaistanbuljuwelier/"]}</script>
 <link rel="icon" type="image/png" href="icon-192.png">
 <title>Marka Istanbul – Zen Diamond Köln</title>
 <link href="f.css" rel="stylesheet">
@@ -318,7 +329,7 @@ html.koyu .opt input{accent-color:#e2c878}
   <img src="lockup.png" alt="Zen Diamond × Marka Istanbul">
   <div data-t="disclaimer"></div>
   <div data-t="imgNote"></div>
-  <div><a href="https://xenosmart.de/markaistanbul/" target="_blank" rel="noopener">Çeyrekmatik</a> &nbsp; <a href="https://xenosmart.de/markaistanbul/impressum.html" target="_blank" rel="noopener" data-t="imprint"></a></div>
+  <div><a href="https://marka22.de/" target="_blank" rel="noopener">Çeyrekmatik</a> &nbsp; <a href="impressum.html" data-t="imprint"></a> &nbsp; <a href="impressum.html#datenschutz" data-t="privacy"></a></div>
 </div></footer>
 
 <div class="ovl" id="ovl"></div>
@@ -346,7 +357,7 @@ html.koyu .opt input{accent-color:#e2c878}
 /* ============ AYARLAR ============
    Altın fiyatları Çeyrekmatik ile aynı kaynaktan gelir (config.json: milyemler; canlı has altın: Kitco → gold-api → price.json).
    Gerçek ürünler (model, fotoğraf, fiyat) için: urunler.json – örnek en altta. */
-const CEYREKMATIK = "https://xenosmart.de/markaistanbul/";
+const CEYREKMATIK = "https://marka22.de/";
 const OZ = 31.1034768, WA_YEDEK = "4922180039255";
 // Ödeme: aktif:false olanlar "yakında" görünür (PayPal / kart hesabı açılınca true yapılır)
 const ODEME = [{id:"dukkan",aktif:true},{id:"havale",aktif:true},{id:"paypal",aktif:false},{id:"kart",aktif:false}];
@@ -437,7 +448,7 @@ const T = {
   total:"Toplam",priceNote:"Altın fiyatı anlık değişir; fiyat WhatsApp'ta onaylanınca kesinleşir.",askNote:n=>`${n} ürün için fiyat WhatsApp'ta bildirilecek.`,
   send:"Siparişi WhatsApp'tan gönder",needName:"Lütfen adınızı yazın.",needItem:"Sepetiniz boş.",
   disclaimer:"Fiyatlar bilgi amaçlıdır ve altın piyasasına göre anlık değişir. Kesin fiyat, siparişiniz WhatsApp üzerinden onaylandığında belirlenir.",
-  imgNote:"Pırlanta koleksiyon fotoğrafları temsilidir; güncel modeller mağazamızda ve WhatsApp'ta. Sesera Gold ürün fotoğrafları Sesera Gold'a aittir.",imprint:"Künye (Impressum)",
+  imgNote:"Pırlanta koleksiyon fotoğrafları temsilidir; güncel modeller mağazamızda ve WhatsApp'ta. Sesera Gold ürün fotoğrafları Sesera Gold'a aittir.",imprint:"Künye (Impressum)",privacy:"Gizlilik (Datenschutz)",
   spotLbl:"Has altın 1 g",live:"canlı",daily:"günlük",offline:"son bilinen",manual:"dükkân fiyatı",
   hi:"Merhaba, bilgi almak istiyorum.",hiR:"Merhaba, mağazanızda randevu almak istiyorum.",
   mHead:"*Yeni sipariş – marka22.shop*",mAsk:"fiyat sorulacak",mName:"Müşteri",mDeliv:"Teslimat",mPay:"Ödeme",mNote:"Not",mTotal:"Toplam (anlık kur)",mSpot:"Has altın"},
@@ -486,7 +497,7 @@ const T = {
   total:"Summe",priceNote:"Der Goldpreis ändert sich laufend; der Preis steht mit der Bestätigung per WhatsApp fest.",askNote:n=>`Für ${n} Artikel nennen wir den Preis per WhatsApp.`,
   send:"Bestellung per WhatsApp senden",needName:"Bitte geben Sie Ihren Namen ein.",needItem:"Ihr Warenkorb ist leer.",
   disclaimer:"Die Preise dienen der Information und ändern sich mit dem Goldmarkt. Der verbindliche Preis wird mit der Bestätigung Ihrer Bestellung per WhatsApp festgelegt.",
-  imgNote:"Fotos der Brillantkollektion sind Beispielbilder; aktuelle Modelle im Geschäft und per WhatsApp. Produktfotos von Sesera Gold: © Sesera Gold.",imprint:"Impressum",
+  imgNote:"Fotos der Brillantkollektion sind Beispielbilder; aktuelle Modelle im Geschäft und per WhatsApp. Produktfotos von Sesera Gold: © Sesera Gold.",imprint:"Impressum",privacy:"Datenschutz",
   spotLbl:"Feingold 1 g",live:"live",daily:"Tagespreis",offline:"letzter Stand",manual:"Ladenpreis",
   hi:"Hallo, ich hätte gern eine Auskunft.",hiR:"Hallo, ich möchte einen Termin in Ihrem Geschäft vereinbaren.",
   mHead:"*Neue Bestellung – marka22.shop*",mAsk:"Preis auf Anfrage",mName:"Kunde",mDeliv:"Lieferung",mPay:"Zahlung",mNote:"Notiz",mTotal:"Summe (aktueller Kurs)",mSpot:"Feingold"},
@@ -535,7 +546,7 @@ const T = {
   total:"Total",priceNote:"The gold price keeps moving; your price is fixed once confirmed on WhatsApp.",askNote:n=>`We'll send the price for ${n} item(s) on WhatsApp.`,
   send:"Send order on WhatsApp",needName:"Please enter your name.",needItem:"Your bag is empty.",
   disclaimer:"Prices are for information and move with the gold market. The binding price is set when your order is confirmed on WhatsApp.",
-  imgNote:"Diamond collection photos are illustrative; current models in store and on WhatsApp. Sesera Gold product photos © Sesera Gold.",imprint:"Imprint",
+  imgNote:"Diamond collection photos are illustrative; current models in store and on WhatsApp. Sesera Gold product photos © Sesera Gold.",imprint:"Imprint",privacy:"Privacy",
   spotLbl:"Fine gold 1 g",live:"live",daily:"daily",offline:"last known",manual:"shop price",
   hi:"Hello, I'd like some information.",hiR:"Hello, I'd like to book a visit to your store.",
   mHead:"*New order – marka22.shop*",mAsk:"price on request",mName:"Customer",mDeliv:"Delivery",mPay:"Payment",mNote:"Note",mTotal:"Total (current rate)",mSpot:"Fine gold"}
@@ -754,7 +765,8 @@ $("sendBtn").onclick = ()=>{ const err = $("err");
 window.addEventListener("hashchange", ()=>temaUygula(TEMA));
 (async function(){
   temaUygula(TEMA); cfg = CFG_YEDEK; spotG = CFG_YEDEK.fallbackOzEur/OZ; renderStatic(); renderPrices();
-  await loadConfig(); renderStatic(); await fetchSpot(); setInterval(fetchSpot, 60000);
+  await loadConfig(); renderStatic();
+  if (P()){ await fetchSpot(); setInterval(fetchSpot, 60000); }   // fiyat gizliyken dış kur servisine hiç gidilmez
 })();
 
 /* urunler.json örneği – gerçek Zen modelleri buraya eklenir, mozaikte kendi kartıyla görünür:
